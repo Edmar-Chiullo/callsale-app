@@ -11,10 +11,11 @@ if (process.env.NODE_ENV === "development") {
 // Gravar dados em um lugar especifico usando o método set().
 // O método set() (altera todos os dados abaixo na árvore como uma atualizção) 
 // Usar set() substitui os dados no local especificado, incluindo quaisquer nós filhos.
-export function writeUserData(userId:number, name:string, email:string) {
-    set(ref(database, 'users/' + userId), {
-      username: name,
-      email: email,
+export function writeUserData(employeeId:number,employeeName:string, employeePermitionType:string) {
+    set(ref(database, 'users/' + employeeId), {
+      employeeId: employeeId,
+      employeeName: employeeName,
+      employeePermitionType: employeePermitionType
     });
   }
 // OnValue executa um ouvinte que retorna os valores apartetir da ramificassão no banco de dados.

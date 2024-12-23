@@ -49,31 +49,32 @@ export default function Login() {
     
   }
 
-  function clicked() {
-  }
-
   function onSubmit(values: z.infer<typeof formSchema>) {
+    router.push('/pages/painel')
 
-    const user = listenerData()
-    user.then((element) => {
-      if (element) { //user é um valor boleano.
-        const users = Object.values(element)
-        users.map(user => {
-            const { email, username }:any = user
-            if (email === values.login && username === values.password ) {
-                setEmployeeName(Employee2.employeeName)
-                router.push('/pages/home')
+    // const user = listenerData()
 
-            } else {
-                setAlertMessage(true)
-                showAlert()        
-            }
-        })
-      } else {
-        setAlertMessage(true)
-        showAlert()
-      }        
-    })
+    // user.then((element) => {
+    //   if (element) { 
+    //     const users = Object.values(element)
+
+    //     users.map(user => {
+    //         const { email, username }:any = user
+            
+    //         if (email === values.login && username === values.password ) {
+    //             setEmployeeName(Employee2.employeeName)
+    //             router.push('/pages/home')
+
+    //         } else {
+    //             setAlertMessage(true)
+    //             showAlert()        
+    //         }
+    //     })
+    //   } else {
+    //     setAlertMessage(true)
+    //     showAlert()
+    //   }        
+    // })
     form.reset({
       login: '',  
       password: ''
@@ -116,7 +117,6 @@ export default function Login() {
                   )}
               />
               <Button type="submit" className="w-full h-12">Entrar</Button>
-              <button onClick={clicked}>Testar</button>
               </form>
               { alertMessage &&
               <Alert className='w-96'>

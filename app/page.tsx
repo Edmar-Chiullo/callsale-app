@@ -1,18 +1,20 @@
 "use client"
 
+import { useRouter } from "next/navigation"
+import { useState } from 'react'
+
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { useRouter } from "next/navigation"
-import { useState } from 'react'
 import { z } from "zod"
 
-import { listenerData } from "./controler-firebase/realtime-database"
+import { getUserAll } from "./controler-firebase/realtime-database"
 import { useLoginContext } from "./context/loginContext/LoginContext"
-import { Employee } from "./class/classes"
+import { EmployeeProps } from "./interface/interfaces"
+//import authDatabase from "./controler-firebase/auth-firebase"
 
 const formSchema = z.object({
   login: z.string().min(2, {
@@ -23,16 +25,19 @@ const formSchema = z.object({
   }),
 })
 
-const Employee2:Employee = {
+const EmployeeLogin:EmployeeProps = {
   employeeId: 2,
   employeeName: 'DevConxt',
-  employeePermissionType: 'admin'
+  employeePermitionType: 'admin'
 }
 
+//////////////////////////////////////////////////////////////////////////////////
+
 export default function Login() {
+ 
   const router = useRouter()
   const [alertMessage, setAlertMessage] = useState(false) // Controlador mensagem de alerta caso o usuario e senha não corresponderem
-  const { setEmployeeName } = useLoginContext()
+  const { setEmployee } = useLoginContext()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -50,9 +55,12 @@ export default function Login() {
   }
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    router.push('/pages/painel')
+    //const auth = authDatabase().then(e => console.log(e + 'Aqui!'))
+    
+    setEmployee(EmployeeLogin)
 
-    // const user = listenerData()
+    router.push('/pages/painel')
+    //const user = getUserAll().then(valor => console.log(valor))
 
     // user.then((element) => {
     //   if (element) { 

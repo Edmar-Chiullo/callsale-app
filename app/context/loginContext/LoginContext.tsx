@@ -1,12 +1,11 @@
 'use client'
-import { Employee } from "@/app/class/classes";
 import { createContext, useContext } from "react";
 //
+import { EmployeeProps } from "@/app/interface/interfaces";
+
 interface LoginContextProps {
-  employeeId: number
-  employeeName: string | null
-  employeePermissionType: string
-  setEmployeeName: (employee: Employee | null) => void;
+  employee: EmployeeProps | null
+  setEmployee: (employee:EmployeeProps | null) => void;
 }
 
 export const LoginContext = createContext<LoginContextProps | null>(null);

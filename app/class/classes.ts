@@ -39,38 +39,47 @@ export class Order implements OrderProps {
     orderEmployeeId: number | null
     orderEmployeeName: string | null
     orderCliCOD: number | null
-    OrderFantasia: string | null
-    orderDate: Date | null
+    orderValue: number | null
+    orderFantasia: string | null
+    orderDate: string | null
+    orderHour: string | null
     orderStatus: boolean | null
 
     constructor(
         employee: EmployeeProps, 
-        client: ClientProps, 
+        client: ClientProps,
         status: boolean
     ) {
         this.orderId = `${client.fantasia?.slice(0,2)}${String(client.cliCOD)?.slice(0,2).toString().split('-', 2)}-${fullHour()}`
         this.orderEmployeeId = employee.employeeId
         this.orderEmployeeName = employee?.employeeName
         this.orderCliCOD = client.cliCOD
-        this.OrderFantasia = client.fantasia
-        this.orderDate = new Date()
+        this.orderValue = 0
+        this.orderFantasia = client.fantasia
+        this.orderDate = fullDate()
+        this.orderHour = fullHour()
         this.orderStatus = status
     }
 
     updateStatus(newStatus: boolean): void {
         this.orderStatus = newStatus;
     }
+
+    setValue(value: number): void {
+        this.orderValue = value
+    }
 }
 
 export class Task implements TaskProps {
-    taskId: string
-    taskEmployeeId: number
+    taskId: string | null
+    taskEmployeeId: string
     taskEmployeeName: string
     taskTitle: string
     taskDescription: string
     taskAgendaDate: string
+    taskAgendaHour: string
     taskRegisterDate: string
-    taskAgendaStatus: string
+    taskAgendaState: boolean
 
     constructor(props: TaskProps) {
         this.taskId = props.taskId
@@ -79,8 +88,9 @@ export class Task implements TaskProps {
         this.taskTitle = props.taskTitle
         this.taskDescription = props.taskDescription
         this.taskAgendaDate = props.taskAgendaDate
+        this.taskAgendaHour = props.taskAgendaHour
         this.taskRegisterDate = props.taskRegisterDate
-        this.taskAgendaStatus = props.taskAgendaStatus
+        this.taskAgendaState = props.taskAgendaState
     }
 }
   
@@ -122,4 +132,3 @@ export class ItemOrder implements ItemOrderProps {
         return result
     }
 }
-  

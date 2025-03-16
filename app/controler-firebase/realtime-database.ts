@@ -1,4 +1,4 @@
-import { getDatabase, connectDatabaseEmulator,  set, ref, onValue } from "firebase/database";
+import { getDatabase, connectDatabaseEmulator,  set, ref, onValue, get, child } from "firebase/database";
 import { app } from "./firebasekey/firebasekey";
 
 import { EmployeeProps, ItemOrderProps, OrderProps, TaskProps } from "../interface/interfaces";
@@ -38,30 +38,48 @@ export async function getUserAll() {
 // O método set() (altera todos os dados abaixo na árvore como uma atualizção) 
 // Agenda set() substitui os dados no local especificado, incluindo quaisquer nós filhos.
 export function createAgenda({ ...props }:TaskProps, taskStatus: string) {
-  set(ref(database, 'tasks/' + props.taskId), {
+  set(ref(database, 'tasks/' + props.taskAgendaDate.replace('/', '').replace('/','') + '/' + props.taskAgendaHour.replace(':','')), {
     taskId: props.taskId,
     taskEmployeeId: props.taskEmployeeId,
     taskEmployeeName: props.taskEmployeeName,
+    taskTitle: props.taskTitle,
     taskDescription: props.taskDescription,
     taskAgendaDate: props.taskAgendaDate,
+    taskAgendaHour: props.taskAgendaHour,
     taskRegisterDate: props.taskRegisterDate,
     taskAgendaState: taskStatus
   })
-
 }
-
 // Gravar dados em um lugar especifico usando o método set().
 // O método set() (altera todos os dados abaixo na árvore como uma atualizção) 
 // Pedido set() substitui os dados no local especificado, incluindo quaisquer nós filhos.
 export function pushOrder({ ...props }:OrderProps | null) {
-  set(ref(database, 'orders/' + fullDate() + '/' + props.orderId ), {
+  set(ref(database, `/orders/${fullDate().slice(4,8)}/${fullDate().slice(2,8)}/${fullDate().slice(0,2)}/${props.orderId}`), {
     order: props,
   })
 }
 
 export function pushOrderItens({ ...props }:ItemOrderProps | null, orderId:string | null) {
-  set(ref(database, 'itens-order/' + fullDate() + '/' + orderId ), {
+  set(ref(database, `/order-itens/${fullDate().slice(4,8)}/${fullDate().slice(2,8)}/${fullDate().slice(0,2)}/${orderId}`), {
     orderlist: props,
   })
 }
 
+export function pushAlterOrder({ ...props }:any | null) {
+  set(ref(database, `orders/${props.orderDate.slice(4,8)}/${props.orderDate.slice(2,8)}/${props.orderDate.slice(0,2)}/${props.orderId}` ), {
+    order: props,
+  })
+}
+
+export async function getOrderItens(id:any, date:any) {
+  const dbRef = ref(getDatabase(app))
+  return await get(child(dbRef, 'itens-order/' + date + '/' + id )).then((snapshot) => {
+    if (snapshot.exists()) {
+      return snapshot.val()
+    } else {
+      return "No data available"
+    }
+  }).catch((error) => {
+    return error
+  });
+}

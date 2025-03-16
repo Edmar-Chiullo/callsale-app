@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
@@ -34,7 +34,11 @@ const EmployeeLogin:EmployeeProps = {
 //////////////////////////////////////////////////////////////////////////////////
 
 export default function Login() {
- 
+  useEffect(() => {
+    const inputLogin:any = document.querySelector('.login')
+    inputLogin.focus()
+  }, [])
+  
   const router = useRouter()
   const [alertMessage, setAlertMessage] = useState(false) // Controlador mensagem de alerta caso o usuario e senha não corresponderem
   const { setEmployee } = useLoginContext()
@@ -100,9 +104,9 @@ export default function Login() {
                   name="login"
                   render={({ field }) => (
                   <FormItem>
-                      <FormLabel>Login</FormLabel>
+                      <FormLabel className="text-lg">Usuário</FormLabel>
                       <FormControl>
-                      <Input placeholder="Login" className="login h-12" {...field} />
+                      <Input placeholder="Usuário" className="login h-12" {...field} />
                       </FormControl>
                       <FormDescription>
                       </FormDescription>
@@ -115,16 +119,16 @@ export default function Login() {
                   name="password"
                   render={({ field }) => (
                   <FormItem>
-                      <FormLabel>Senha</FormLabel>
+                      <FormLabel className="text-lg">Senha</FormLabel>
                       <FormControl>
-                      <Input type='password' placeholder="password" className="password h-12" {...field} />
+                      <Input type='password' placeholder="Senha" className="password h-12" {...field} />
                       </FormControl>
                       <FormDescription></FormDescription>
                       <FormMessage />
                   </FormItem>
                   )}
               />
-              <Button type="submit" className="w-full h-12">Entrar</Button>
+              <Button type="submit" className="w-full h-12 text-2xl">Entrar</Button>
               </form>
               { alertMessage &&
               <Alert className='w-96'>

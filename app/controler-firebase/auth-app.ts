@@ -6,7 +6,6 @@ export default async function AppAuth(email:string, senha:string) {
     signInWithEmailAndPassword(auth, email, senha)
     .then((userCredential) => {
        const user = userCredential.user
-       console.log(user.email)
     })
     .catch((error) => {
         const errorCode = error.code

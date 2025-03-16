@@ -36,17 +36,20 @@ export interface OrderProps {
     orderId: string | null
     orderEmployeeId: number | null
     orderEmployeeName: string | null
-    orderDate: Date | null
+    orderDate: string | null
+    orderHour: string | null
+    orderValue: number | null
     orderStatus: boolean | null // Tipos de status. Concluido | Cancelada | Pendente.
 }
 
 export interface TaskProps {
-    taskId: string
-    taskEmployeeId: number
+    taskId: string | null
+    taskEmployeeId: string
     taskEmployeeName: string
     taskTitle: string
     taskDescription: string
     taskAgendaDate: string // Data em que a tarefa foi agendada.
+    taskAgendaHour: string // Hora em que a tarefa foi agendada.
     taskRegisterDate: string // Data do cadastro
-    taskAgendaStatus: string // Tipos de status Concluida | Cancelada | Pendente. 
+    taskAgendaState: boolean // Tipos de status Concluida | Cancelada | Pendente. 
 }

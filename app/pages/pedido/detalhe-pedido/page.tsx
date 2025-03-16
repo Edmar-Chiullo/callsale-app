@@ -89,12 +89,14 @@ export default function OrderDetail() {
 
         const result = orderValue.reduce((anterior, atual):any => anterior + atual) // Calculando o valor do pedido.
         setResultOrderValue(result) // Valor a ser impresso na interface mostrando o valor total do pedido.
-        console.log(orderValue)
-
-        console.log(orderValue.length -1)
-        console.log(orderValue.length)
 
     }, [orderValue])
+
+    useEffect(() => {
+    const inputLogin:any = document.querySelector('.cod-produto')
+    inputLogin.focus()
+    }, [])
+
 
     function removeElement(productId:any, fullValue:any) {
         const itemRemoved = orderList?.removeItem(productId)
@@ -157,6 +159,10 @@ export default function OrderDetail() {
         setCountInterface(countInterface+1)
 
         clearInputs()
+
+        const inputLogin:any = document.querySelector('.cod-produto')
+        inputLogin.focus()
+    
     }
 
     function finishOrder() {
@@ -165,6 +171,7 @@ export default function OrderDetail() {
 
     function finishedOrder(value:any) { 
         if (value.target.innerHTML === 'Aberto') {
+            order?.setValue(resultOrderValue)
             order?.updateStatus(true)
             const lista = convertListToArray(itemInterface)
 
@@ -226,7 +233,7 @@ export default function OrderDetail() {
                                     <FormItem>
                                         <FormLabel>Cod. Produto</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Código do produto" className="cod-cliente w-80" {...field} onBlur={(value) => getProduct(value.target.value)} />
+                                            <Input placeholder="Código do produto" className="cod-produto w-80" {...field} onBlur={(value) => getProduct(value.target.value)} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -327,7 +334,7 @@ export default function OrderDetail() {
                             </div>
                         </ul>
                     </div>
-                    <ScrollArea className="flex flex-col gap-8 p-1 w-full h-[93%]">
+                    <ScrollArea className="flex flex-col p-1 w-full h-[92%]">
                         {
                             itemInterface.map((item:any, key:any) => {
                                 if (item) {
@@ -336,8 +343,8 @@ export default function OrderDetail() {
                                      } = item
                                      const  fullValueUnity = productQuantityUnity.toFixed(2)
                                     return (
-                                        <div key={key} className="relative flex flex-col justify-between items-center w-full h-7 rounded-sm hover:bg-slate-300 bg-slate-200">
-                                            <ul className="grid grid-cols-[50px_150px_430px_100px_50px_50px_50px_80px] pl-2 place-content-start w-full">
+                                        <div key={key} className="relative flex flex-col justify-between items-center mb-[2px] w-full h-7 rounded-sm hover:bg-slate-300 bg-slate-200">
+                                            <ul className="grid grid-cols-[50px_150px_430px_100px_50px_50px_50px_80px] place-content-start w-full">
                                                 <li>{key + 1}</li>
                                                 <li>{productCod}</li>
                                                 <li>{productDescription}</li>

@@ -7,6 +7,8 @@ import { checkPath } from "../utils/check-path";
 import { PedidoContextProvider } from "@/app/context/pedidoContext/PedidoContextProvider";
 import { useLoginContext } from "../context/loginContext/LoginContext";
 
+import Image from "next/image";
+
 import "../globals.css";
 
 //www.esperancaparaocoracao.org
@@ -37,8 +39,15 @@ export default function RootLayout({
     <PedidoContextProvider>
       <div className="container-mai flex justify-center items-center w-svw h-svh">
         <div className="container-app flex w-full">
+          
           <div className="side-bar flex gap-2 justify-center items-center w-64 h-svh bg-black">
-            <div className="nav-bar flex justify-center items-start w-full h-96 p-4">
+            <div className="nav-bar flex flex-col justify-start gap-28 items-center w-full h-full p-4">
+              <Image 
+                src={'/logo.png'}
+                width={150}                              
+                height={150}
+                alt="Logo da impresa"
+              />              
               <ul className="nav-list flex flex-col gap-3">
                 <li className="painel nav-item-list text-slate-50 cursor-pointer hover:text-slate-100" onClick={() => {router.push('/pages/painel')}}>PAINEL</li>
                 <li className="agenda nav-item-list text-slate-50 cursor-pointer hover:text-slate-100" onClick={() => {router.push('/pages/agenda')}}>AGENDA</li>

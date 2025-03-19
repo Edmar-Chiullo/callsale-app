@@ -21,6 +21,10 @@ export function checkPath(props:string) {
             const dtelhePedido = 'pedido'
             return dtelhePedido  
 
+        case '/pages/menudev':
+            const dev = 'menudev'
+            return dev  
+    
             default:
             break;
     }

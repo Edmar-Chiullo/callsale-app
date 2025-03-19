@@ -46,7 +46,7 @@ export const clienteCarteira = [
      "razao": "EQUITRATOR TRATORES PECAS HIDR",
      "fantasia": "EQUITRATORES",
      "cidade": "SARANDI",
-     "atuacao": "MEC LEVE\/PESADO"
+     "atuacao": "MEC LEVE - PESADO"
     },
     {
      "cliCOD": 4514,
@@ -103,7 +103,6 @@ export const clienteCarteira = [
      "fantasia": "DJ DIESEL",
      "cidade": "ARAPONGAS",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Elifaz"
     },
     {
      "cliCOD": 9454,
@@ -139,7 +138,6 @@ export const clienteCarteira = [
      "fantasia": "MERCEDES TREVODIESEL",
      "cidade": "ARAPONGAS",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Vinicius"
     },
     {
      "cliCOD": 9969,
@@ -153,7 +151,7 @@ export const clienteCarteira = [
      "razao": "EDER FRANCISQUINI EIRELI",
      "fantasia": "EDER AUTO PECAS",
      "cidade": "CAMBARA",
-     "atuacao": "AUTO PECAS LEVE\/PESADA"
+     "atuacao": "AUTO PECAS LEVE - PESADA"
     },
     {
      "cliCOD": 2804,
@@ -167,14 +165,14 @@ export const clienteCarteira = [
      "razao": "L. J. ARAUJO & ARAUJO LTDA",
      "fantasia": "PAULINHO AUTO PECAS",
      "cidade": "CARLOPOLIS",
-     "atuacao": "AUTO PECAS LEVE\/PESADA"
+     "atuacao": "AUTO PECAS LEVE - PESADA"
     },
     {
      "cliCOD": 32804,
      "razao": "MULTI PECAS COMERCIO PARA VEIC",
      "fantasia": "MULT-DISEL",
      "cidade": "CORNELIO PROCOP",
-     "atuacao": "AUTO PECAS LEVE\/PESADA"
+     "atuacao": "AUTO PECAS LEVE - PESADA"
     },
     {
      "cliCOD": 82213,
@@ -196,14 +194,13 @@ export const clienteCarteira = [
      "fantasia": "CASA DAS MOLAS",
      "cidade": "APUCARANA",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Edgar"
     },
     {
      "cliCOD": 3378,
      "razao": "MARCOS PAULO REZENDE & CIA LTD",
      "fantasia": "AUTO PECAS SANTA BAR",
      "cidade": "NOVA SANTA BARB",
-     "atuacao": "AUTO PECAS LEVE\/PESADA"
+     "atuacao": "AUTO PECAS LEVE - PESADA"
     },
     {
      "cliCOD": 89505,
@@ -245,7 +242,7 @@ export const clienteCarteira = [
      "razao": "PEDRO ROBERTO VARRASQUIM JUNIO",
      "fantasia": "COM DE PECAS VARRASQ",
      "cidade": "CARLOPOLIS",
-     "atuacao": "AUTO PECAS LEVE\/PESADA"
+     "atuacao": "AUTO PECAS LEVE - PESADA"
     },
     {
      "cliCOD": 13422,
@@ -253,12 +250,11 @@ export const clienteCarteira = [
      "fantasia": "AROLDO AUTO PECAS",
      "cidade": "ARAPONGAS",
      "atuacao": "AUTO PECAS PESADA",
-     "Contato": "Aroldo"
     },
     {
      "cliCOD": 33892,
      "razao": "ACESSORIOS ROTA 153 LTDA",
-     "fantasia": "ACARON ACESSORIOS \/",
+     "fantasia": "ACARON ACESSORIOS",
      "cidade": "SANTO ANTONIO D",
      "atuacao": "AUTO PECAS PESADA"
     },
@@ -282,7 +278,6 @@ export const clienteCarteira = [
      "fantasia": "JB DIZIO",
      "cidade": "MANDAGUARI",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "José"
     },
     {
      "cliCOD": 88655,
@@ -379,7 +374,9 @@ export const clienteCarteira = [
      "cliCOD": 41491,
      "razao": "TRANS APUCARANA TRANSPORTES RO",
      "fantasia": "TRANSAPUCARANA",
-     "cidade": "UMUARAMA"
+     "cidade": "UMUARAMA",
+     "atuacao": "TRANSPORTE RODOVIÁRIO DE CARGA"
+
     },
     {
      "cliCOD": 34837,
@@ -400,11 +397,11 @@ export const clienteCarteira = [
      "razao": "AGROINGA PECAS E SERVICOS LTDA",
      "fantasia": "AGROINGA",
      "cidade": "MARINGA",
-     "atuacao": "AUTO PECAS LEVE\/PESADA"
+     "atuacao": "AUTO PECAS LEVE - PESADA"
     },
     {
      "cliCOD": 3686,
-     "razao": "AGROPRATINHA S\/A",
+     "razao": "AGROPRATINHA SA",
      "fantasia": "AGRO PRATINHA",
      "cidade": "PARANAVAI",
      "atuacao": "TRANSPORTADORA"
@@ -414,7 +411,7 @@ export const clienteCarteira = [
      "razao": "EDC COMERCIO DE PECAS E ACESSO",
      "fantasia": "EDC CENTRO AUTOMOTIV",
      "cidade": "IBAITI",
-     "atuacao": "AUTO PECAS LEVE\/PESADA"
+     "atuacao": "AUTO PECAS LEVE - PESADA"
     },
     {
      "cliCOD": 34153,
@@ -429,7 +426,6 @@ export const clienteCarteira = [
      "fantasia": "AUTO PECAS CARRETAO",
      "cidade": "MARINGA",
      "atuacao": "AUTO PECAS PESADA",
-     "Contato": "Fernando\/Rodrigo"
     },
     {
      "cliCOD": 39817,
@@ -479,13 +475,14 @@ export const clienteCarteira = [
      "fantasia": "RENATO DE LIMA",
      "cidade": "ARAPONGAS",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Alessandro"
     },
     {
      "cliCOD": 40227,
      "razao": "AUTO MECANICA REVISA LTDA",
      "fantasia": "AUTO MECANICA REVISA",
-     "cidade": "SANTA FE"
+     "cidade": "SANTA FE",
+     "atuacao": "MANUTENÇÃO E REPARAÇÃO DE AUTOMOTORES",
+
     },
     {
      "cliCOD": 23827,
@@ -507,7 +504,6 @@ export const clienteCarteira = [
      "fantasia": "RM TRUCK CENTER",
      "cidade": "APUCARANA",
      "atuacao": "POSTO DE MOLAS",
-     "Contato": "Bruno"
     },
     {
      "cliCOD": 23222,
@@ -522,7 +518,6 @@ export const clienteCarteira = [
      "fantasia": "MECANICA GOGOLA",
      "cidade": "MARILANDIA DO S",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Pedro"
     },
     {
      "cliCOD": 24145,
@@ -558,7 +553,6 @@ export const clienteCarteira = [
      "fantasia": "ALESSANDRO DE LIMA",
      "cidade": "ARAPONGAS",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Alessandro"
     },
     {
      "cliCOD": 38985,
@@ -579,15 +573,14 @@ export const clienteCarteira = [
      "razao": "RODO BATS TRANSPORTES LTDA",
      "fantasia": "RODO BATS",
      "cidade": "CALIFORNIA",
-     "atuacao": "FROTISTA",
-     "Contato": "Mariane"
+     "atuacao": "FROTISTA"
     },
     {
      "cliCOD": 8974,
      "razao": "LEONARDO AUGUSTO BERMUDES RAMA",
      "fantasia": "LEO PECAS E ACESSORI",
      "cidade": "BANDEIRANTES",
-     "atuacao": "MEC LEVE\/PESADO"
+     "atuacao": "MEC LEVE - PESADO"
     },
     {
      "cliCOD": 34699,
@@ -621,15 +614,15 @@ export const clienteCarteira = [
      "cliCOD": 39371,
      "razao": "LUB MOTORS CAMINHOES LTDA",
      "fantasia": "LUB MOTORS",
-     "cidade": "MARINGA"
+     "cidade": "MARINGÁ",
+     "atuacao": "PEÇAS E ACESSÓRIOS AUTOMOTORES"
     },
     {
      "cliCOD": 81420,
      "razao": "MARIA ELIZA PIMETTI DE LIMA 01",
      "fantasia": "MARIA ELIZA PIMETTI",
      "cidade": "ARAPONGAS",
-     "atuacao": "MECANICA - PESADA",
-     "Contato": "Alessandro"
+     "atuacao": "MECANICA - PESADA"
     },
     {
      "cliCOD": 2692,
@@ -657,7 +650,7 @@ export const clienteCarteira = [
      "razao": "TREVISA SOLUCOES PARA TRANSPOR",
      "fantasia": "TREVISA",
      "cidade": "CAMBE",
-     "atuacao": "CONCESSIONARIA"
+     "atuacao": "COMERCIO DE VEICULOS NOVOS"
     },
     {
      "cliCOD": 33032,
@@ -803,7 +796,9 @@ export const clienteCarteira = [
      "cliCOD": 41906,
      "razao": "IRMAO AUTOPECAS LTDA",
      "fantasia": "IRMAO AUTOPECAS LTDA",
-     "cidade": "MARINGA"
+     "cidade": "MARINGA",
+     "atuacao": "PEÇAS E ACESSÓRIOS AUTOMOTORES"
+
     },
     {
      "cliCOD": 81345,
@@ -846,7 +841,6 @@ export const clienteCarteira = [
      "fantasia": "RODOPECAS",
      "cidade": "JANDAIA DO SUL",
      "atuacao": "AUTO PECAS PESADA",
-     "Contato": "Willian"
     },
     {
      "cliCOD": 35238,
@@ -854,7 +848,6 @@ export const clienteCarteira = [
      "fantasia": "ULIAN FREIOS",
      "cidade": "ARAPONGAS",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Fernando"
     },
     {
      "cliCOD": 88975,
@@ -862,7 +855,6 @@ export const clienteCarteira = [
      "fantasia": "MECANICA CIDADE ALTA",
      "cidade": "APUCARANA",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Marcio"
     },
     {
      "cliCOD": 8702,
@@ -870,7 +862,6 @@ export const clienteCarteira = [
      "fantasia": "C H FERNANDES",
      "cidade": "APUCARANA",
      "atuacao": "AUTO PECAS PESADA",
-     "Contato": "Edinho"
     },
     {
      "cliCOD": 35981,
@@ -878,7 +869,6 @@ export const clienteCarteira = [
      "fantasia": "TRANSPORTADORA RADAR",
      "cidade": "ROLANDIA",
      "atuacao": "FROTISTA",
-     "Contato": "Henrique"
     },
     {
      "cliCOD": 81274,
@@ -886,11 +876,10 @@ export const clienteCarteira = [
      "fantasia": "POSTO DE MOLAS CACUL",
      "cidade": "JANDAIA DO SUL",
      "atuacao": "POSTO DE MOLAS",
-     "Contato": "Esaú\/Luiz"
     },
     {
      "cliCOD": 28628,
-     "razao": "R.B. COMERCIO DE AUTO PECAS P\/",
+     "razao": "R.B. COMERCIO DE AUTO PECAS P",
      "fantasia": "REAL AUTOPEAS",
      "cidade": "MANDAGUARI",
      "atuacao": "MECANICA - PESADA"
@@ -901,7 +890,6 @@ export const clienteCarteira = [
      "fantasia": "AUTO MECANICA SCANIA",
      "cidade": "APUCARANA",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Luiz"
     },
     {
      "cliCOD": 33291,
@@ -909,7 +897,6 @@ export const clienteCarteira = [
      "fantasia": "OFICINA UNIAO",
      "cidade": "FAXINAL",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Jonas"
     },
     {
      "cliCOD": 34802,
@@ -923,8 +910,7 @@ export const clienteCarteira = [
      "razao": "BRUNA DANIELLI MARQUETI MACHAD",
      "fantasia": "MECANICA RODODIESEL",
      "cidade": "CRUZMALTINA",
-     "atuacao": "MEC LEVE\/PESADO",
-     "Contato": "Bruna\/Rodolfo"
+     "atuacao": "MEC LEVE - PESADO",
     },
     {
      "cliCOD": 32694,
@@ -932,7 +918,6 @@ export const clienteCarteira = [
      "fantasia": "NACIONAL DIESEL",
      "cidade": "APUCARANA",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Paulo"
     },
     {
      "cliCOD": 14182,
@@ -940,7 +925,6 @@ export const clienteCarteira = [
      "fantasia": "AUTO PECAS LONDIESEL",
      "cidade": "MAUA DA SERRA",
      "atuacao": "AUTO PECAS PESADA",
-     "Contato": "Vinicius"
     },
     {
      "cliCOD": 36206,
@@ -948,7 +932,6 @@ export const clienteCarteira = [
      "fantasia": "PRATA DIESEL",
      "cidade": "MANDAGUARI",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Rato"
     },
     {
      "cliCOD": 34771,
@@ -963,7 +946,6 @@ export const clienteCarteira = [
      "fantasia": "OFICINA MECANICA DO",
      "cidade": "JANDAIA DO SUL",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Fernando"
     },
     {
      "cliCOD": 13137,
@@ -971,7 +953,6 @@ export const clienteCarteira = [
      "fantasia": "DIESEL BENZ",
      "cidade": "ARAPONGAS",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Peixe"
     },
     {
      "cliCOD": 32626,
@@ -993,7 +974,6 @@ export const clienteCarteira = [
      "fantasia": "SUPER PECAS",
      "cidade": "FAXINAL",
      "atuacao": "AUTO PECAS PESADA",
-     "Contato": "Carlos"
     },
     {
      "cliCOD": 36080,
@@ -1001,7 +981,6 @@ export const clienteCarteira = [
      "fantasia": "J H MECANICA DIESEL",
      "cidade": "ROLANDIA",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Marcia\/Igor\/Alini"
     },
     {
      "cliCOD": 80791,
@@ -1009,7 +988,6 @@ export const clienteCarteira = [
      "fantasia": "POSTO MOLA VALE DO I",
      "cidade": "JANDAIA DO SUL",
      "atuacao": "POSTO DE MOLAS",
-     "Contato": "Maicon"
     },
     {
      "cliCOD": 89458,
@@ -1024,7 +1002,6 @@ export const clienteCarteira = [
      "fantasia": "VILA SANTA",
      "cidade": "ROLANDIA",
      "atuacao": "FROTISTA",
-     "Contato": "Hevere"
     },
     {
      "cliCOD": 2872,
@@ -1039,7 +1016,6 @@ export const clienteCarteira = [
      "fantasia": "9 EIXOS",
      "cidade": "MANDAGUARI",
      "atuacao": "AUTO PECAS PESADA",
-     "Contato": "Carol"
     },
     {
      "cliCOD": 32086,
@@ -1054,7 +1030,6 @@ export const clienteCarteira = [
      "fantasia": "FREIOS JANDAIA",
      "cidade": "JANDAIA DO SUL",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Elton"
     },
     {
      "cliCOD": 90468,
@@ -1062,7 +1037,6 @@ export const clienteCarteira = [
      "fantasia": "AUTO PECAS MINAS GER",
      "cidade": "APUCARANA",
      "atuacao": "AUTO PECAS LEVE",
-     "Contato": "Agnaldo\/Pedro"
     },
     {
      "cliCOD": 35039,
@@ -1098,7 +1072,6 @@ export const clienteCarteira = [
      "fantasia": "EXCELLENCE",
      "cidade": "APUCARANA",
      "atuacao": "FROTISTA",
-     "Contato": "Danilo"
     },
     {
      "cliCOD": 9527,
@@ -1106,7 +1079,6 @@ export const clienteCarteira = [
      "fantasia": "MAMUTE OFICINA",
      "cidade": "ROLANDIA",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Edson"
     },
     {
      "cliCOD": 3639,
@@ -1114,7 +1086,6 @@ export const clienteCarteira = [
      "fantasia": "ARANDIESEL AUTOPECAS",
      "cidade": "APUCARANA",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Angela"
     },
     {
      "cliCOD": 36297,
@@ -1122,7 +1093,6 @@ export const clienteCarteira = [
      "fantasia": "CARRETEIRO AUTO PECA",
      "cidade": "APUCARANA",
      "atuacao": "AUTO PECAS PESADA",
-     "Contato": "Inacio"
     },
     {
      "cliCOD": 29061,
@@ -1130,7 +1100,6 @@ export const clienteCarteira = [
      "fantasia": "ARADIESEL - OFICINA",
      "cidade": "ARAPONGAS",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Susane"
     },
     {
      "cliCOD": 31879,
@@ -1138,7 +1107,6 @@ export const clienteCarteira = [
      "fantasia": "AUTO PECAS GOIAS",
      "cidade": "APUCARANA",
      "atuacao": "AUTO PECAS PESADA",
-     "Contato": "Guilherme"
     },
     {
      "cliCOD": 90143,
@@ -1160,7 +1128,6 @@ export const clienteCarteira = [
      "fantasia": "POSTO MOLAS BRASIL",
      "cidade": "APUCARANA",
      "atuacao": "POSTO DE MOLAS",
-     "Contato": "Silvio\/Tatiane"
     },
     {
      "cliCOD": 32449,
@@ -1168,7 +1135,6 @@ export const clienteCarteira = [
      "fantasia": "TRANS CALIMAN",
      "cidade": "APUCARANA",
      "atuacao": "FROTISTA",
-     "Contato": "Marcelo"
     },
     {
      "cliCOD": 89474,
@@ -1176,7 +1142,6 @@ export const clienteCarteira = [
      "fantasia": "BRAMBILA TRANSPORTES",
      "cidade": "ARAPONGAS",
      "atuacao": "FROTISTA",
-     "Contato": "Edmar"
     },
     {
      "cliCOD": 36012,
@@ -1198,7 +1163,6 @@ export const clienteCarteira = [
      "fantasia": "AUTO MECANICA SILVA",
      "cidade": "BOM SUCESSO",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Carol"
     },
     {
      "cliCOD": 3965,
@@ -1206,7 +1170,6 @@ export const clienteCarteira = [
      "fantasia": "VERSATILE LOGISTICA",
      "cidade": "JANDAIA DO SUL",
      "atuacao": "FROTISTA",
-     "Contato": "Wellington"
     },
     {
      "cliCOD": 3488,
@@ -1214,7 +1177,6 @@ export const clienteCarteira = [
      "fantasia": "BALAN MECANICA E AUT",
      "cidade": "ROLANDIA",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Luiz\/Balan"
     },
     {
      "cliCOD": 30981,
@@ -1256,7 +1218,7 @@ export const clienteCarteira = [
      "razao": "A Z GASPARINI & CIA LTDA",
      "fantasia": "AUTO PECAS E MEC ROD",
      "cidade": "ARAPONGAS",
-     "atuacao": "MEC LEVE\/PESADO"
+     "atuacao": "MEC LEVE - PESADO"
     },
     {
      "cliCOD": 25128,
@@ -1264,7 +1226,6 @@ export const clienteCarteira = [
      "fantasia": "OFICINA LUIZAO TURBO",
      "cidade": "ROSARIO DO IVAI",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Fernando"
     },
     {
      "cliCOD": 24563,
@@ -1279,7 +1240,6 @@ export const clienteCarteira = [
      "fantasia": "AUTO PECAS KAMAROSKI",
      "cidade": "RIO BRANCO DO I",
      "atuacao": "AUTO PECAS LEVE",
-     "Contato": "Douglas"
     },
     {
      "cliCOD": 37284,
@@ -1301,7 +1261,6 @@ export const clienteCarteira = [
      "fantasia": "JW COMERCIO DE PECAS",
      "cidade": "APUCARANA",
      "atuacao": "AUTO PECAS AGRICOLA",
-     "Contato": "José"
     },
     {
      "cliCOD": 90578,
@@ -1337,7 +1296,6 @@ export const clienteCarteira = [
      "fantasia": "AUTO MECANICA PIRAPO",
      "cidade": "APUCARANA",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Waltinho"
     },
     {
      "cliCOD": 3887,
@@ -1366,7 +1324,6 @@ export const clienteCarteira = [
      "fantasia": "BAVARIA AGRICOLA",
      "cidade": "ROLANDIA",
      "atuacao": "AUTO PECAS AGRICOLA",
-     "Contato": "Fernando"
     },
     {
      "cliCOD": 22356,
@@ -1381,7 +1338,6 @@ export const clienteCarteira = [
      "fantasia": "MECAMOL",
      "cidade": "ORTIGUEIRA",
      "atuacao": "AUTO PECAS PESADA",
-     "Contato": "Sonia"
     },
     {
      "cliCOD": 24827,
@@ -1396,7 +1352,6 @@ export const clienteCarteira = [
      "fantasia": "JAMEL",
      "cidade": "JANDAIA DO SUL",
      "atuacao": "FROTISTA",
-     "Contato": "Robson"
     },
     {
      "cliCOD": 32684,
@@ -1418,7 +1373,6 @@ export const clienteCarteira = [
      "fantasia": "COOPERVAL",
      "cidade": "JANDAIA DO SUL",
      "atuacao": "COOPERATIVA",
-     "Contato": "Jordão"
     },
     {
      "cliCOD": 34901,
@@ -1440,7 +1394,6 @@ export const clienteCarteira = [
      "fantasia": "GS DIESEL CONSERTO E",
      "cidade": "ROLANDIA",
      "atuacao": "MECANICA - LEVE",
-     "Contato": "Robson"
     },
     {
      "cliCOD": 36204,
@@ -1462,7 +1415,6 @@ export const clienteCarteira = [
      "fantasia": "LOJA DO MOTORISTA",
      "cidade": "ROLANDIA",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Lucas"
     },
     {
      "cliCOD": 88546,
@@ -1484,7 +1436,6 @@ export const clienteCarteira = [
      "fantasia": "MECANICA ARANDIESEL",
      "cidade": "APUCARANA",
      "atuacao": "MECANICA - PESADA",
-     "Contato": "Angela"
     },
     {
      "cliCOD": 89709,
@@ -1492,7 +1443,6 @@ export const clienteCarteira = [
      "fantasia": "PAULOKAR",
      "cidade": "TAMARANA",
      "atuacao": "AUTO PECAS LEVE",
-     "Contato": "Fernando"
     },
     {
      "cliCOD": 90128,

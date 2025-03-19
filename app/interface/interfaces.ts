@@ -2,6 +2,7 @@ export interface EmployeeProps {
     employeeId: number | null
 	employeeName: string | null
 	employeePermitionType: string | null// Typo de permissão que o usuário possui. admin (Gestor) | fun (Funcionátio)
+    employeePassword: string | null
 }
 
 export interface ClientProps {
@@ -13,11 +14,21 @@ export interface ClientProps {
 }
 
 export interface ProductProps {
-    productId: number | null
 	productCod: string | null // Código da empresa fornecedora.
 	productDescription: string | null
 	productType: string | null
-	productUnitValor: number | null
+    productNCM: string | null
+    productAplication: string | null
+	productUnitValue: number | null
+	productRepresented: string | null // Qual empresa fornece o produto
+    productStatus: string | null //Tipos de status. c_estoque | s_estoque | finalizado.
+}
+
+export interface ProductPropss {
+	productCod: string | null // Código da empresa fornecedora.
+	productDescription: string | null
+	productType: string | null
+	productUnitValue: number | null
 	productRepresented: string | null // Qual empresa fornece o produto
     productStatus: string | null //Tipos de status. c_estoque | s_estoque | finalizado.
 }

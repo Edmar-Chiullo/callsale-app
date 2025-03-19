@@ -201,7 +201,7 @@ export default function Pedido() {
           </form>
         </Form>
       </div>                
-      <h2 className="self-start">Pedidos do dia</h2>
+      <h2 className="self-start">Pedidos pendentes</h2>
       <div className="box-detail-order flex justify-center items-center w-full h-[64%]">
           <div className="flex flex-col w-full h-full">
             <div className="w-full h-6 bg-zinc-950 rounded-sm pl-1 mb-1">

@@ -10,7 +10,6 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { getDatabase, ref, onValue } from "firebase/database";
 import { app } from "@/app/controler-firebase/firebasekey/firebasekey";
 import stractOrderList from "@/app/utils/stract-order-list"
-import stractTaskList from "@/app/utils/stract-task"
 
 export default function Home() {
   const database = getDatabase(app)
@@ -22,6 +21,9 @@ export default function Home() {
   const [ vDay, setVDay ] = useState(0)
   const [ vWeek, setVWeek ] = useState(0)
   const [ vMonth, setVMonth ] = useState(0)
+  const [ fullOrderDay, setFullOrderDay ] = useState<[]>([])
+  const [ fullOrderWeek, setFullOrderWeek ] = useState<[]>([])
+  const [ fullOrderMonth, setFullOrderMonth ] = useState<[]>([])
   const [ failTask, setFailTask ] = useState('')
   const [ calcValueDay, setCalcValueDay ] = useState<string[]>([])
 
@@ -68,43 +70,60 @@ export default function Home() {
     calWeek()
   }, [order])
 
-  function calcMonth() {
-    const result:any = order.map(({orderValue}:any) => orderValue).reduce((sum:any, value:any) => sum + value, 0)
-    const full:any = Number(result).toFixed(2)
-    setVMonth(full)
-  }
-
   function formatarData (dataStr: string){
     const dia = dataStr.slice(0, 2);
     const mes = dataStr.slice(2, 4);
     const ano = dataStr.slice(4, 8);
-    return new Date(`${ano}-${mes}-${dia}`); // Formato YYYY-MM-DD
-  };
+    const alt = Number(dia) + 1
+    return new Date(`${ano}-${mes}-${String(alt)}`); // Formato YYYY-MM-DD
+  }
 
+  function calcMonth() {
+    const month:any = []
+    const result:any = order.map(({orderValue, orderStatus}:any) => {
+      if (!orderStatus) {
+        month.push(orderValue)
+        return orderValue
+      } 
+    
+    }).reduce((sum=0, value=0) => sum + value, 0)
+    
+    setFullOrderMonth(month)
+    const full:any = Number(result).toFixed(2)
+    setVMonth(full)
+  }
 
   function calWeek() {
     const hoje = new Date();
     const primeiroDiaSemana = new Date(hoje);
     primeiroDiaSemana.setDate(hoje.getDate() - hoje.getDay())
-
-    const result:any = order.map(({orderValue, orderDate}:any) => {
+    const week:any = []
+    const result = order.map(({orderValue, orderDate, orderStatus}:any) => {
 
       const dataPedido = new Date(formatarData(orderDate));
-      if (dataPedido >= primeiroDiaSemana && dataPedido <= hoje) return orderValue
+      if (dataPedido.getDate() >= primeiroDiaSemana.getDate() && dataPedido.getDate() <= hoje.getDate() && !orderStatus) { 
+        week.push(orderValue)
+        return orderValue 
+      }
 
-    }).reduce((sum:any, value:any) => sum + value, 0)
+    }).reduce((sum=0, value=0) => sum + value, 0)
 
+    setFullOrderWeek(week)
     const full:any = Number(result).toFixed(2)
     setVWeek(full)
   }
 
   function calcDay() {
     const date = fullDate()
-
-    const result:any = order.map(({orderValue, orderDate}:any) => {
-      if (orderDate.slice(0,2) === date.slice(0,2)) return orderValue
+    const day:any = []
+    const result:any = order.map(({orderValue, orderDate, orderStatus}:any) => {
+      if (orderDate.slice(0,2) === date.slice(0,2) && !orderStatus){
+        day.push(orderValue)
+        return orderValue
+      } 
     }).reduce((sum=0, value=0) => sum + value, 0)
 
+    setFullOrderDay(day)
     const full:any = Number(result).toFixed(2)
     setVDay(full)
   }
@@ -118,11 +137,19 @@ export default function Home() {
             <div>
               <span className="font-bold text-2xl">{`R$ ${vDay}`}</span>
             </div>
+            <div className="text-xs">
+              <span>Total pedido: </span>
+              <span>{fullOrderDay.length}</span>
+            </div>
           </div>
           <div className="flex flex-col justify-center items-center w-48 h-28 rounded-md shadow-md shadow-zinc-700">
             <span className="font-semibold">Soma Pedido Semana</span>
             <div>
               <span className="font-bold text-2xl">{`R$ ${vWeek}`}</span>
+            </div>
+            <div className="text-xs">
+              <span>Total pedido: </span>
+              <span>{fullOrderWeek.length}</span>
             </div>
           </div>
           <div className="flex flex-col justify-center items-center w-48 h-28 rounded-md shadow-md shadow-zinc-700">
@@ -130,7 +157,11 @@ export default function Home() {
             <div>
               <span className="font-bold text-2xl">{`R$ ${vMonth}`}</span>
             </div>
-          </div>
+            <div className="text-xs">
+                <span>Total pedido: </span>
+                <span>{fullOrderMonth.length}</span>
+              </div>
+            </div>
           </div>
 
           <div className="w-full h-1 bg-zinc-950"></div>
@@ -174,7 +205,7 @@ export default function Home() {
               </div>
             </div>
             <div className="w-[50%]">
-              <h1>Pedidos abertos</h1>
+              <h1>Pedidos abertos (hoje)</h1>
               <div className="w-full">
                 <div className="w-full rounded-sm bg-zinc-950">
                   <ul className="grid grid-cols-10 gap-1 text-slate-50 text-sm pl-2 pr-2">

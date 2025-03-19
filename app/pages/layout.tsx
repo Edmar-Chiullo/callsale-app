@@ -26,7 +26,8 @@ export default function RootLayout({
 
   useEffect(() => {
     const listNav = document.querySelectorAll(`.nav-item-list`)
-    listNav.forEach(item => {
+
+    listNav.forEach((item:any) => {
       if (item.classList.contains(page)) {
         item.style.color = '#94a3b8' ///color: rgb(241 245 249)
       } else {
@@ -52,6 +53,7 @@ export default function RootLayout({
                 <li className="painel nav-item-list text-slate-50 cursor-pointer hover:text-slate-100" onClick={() => {router.push('/pages/painel')}}>PAINEL</li>
                 <li className="agenda nav-item-list text-slate-50 cursor-pointer hover:text-slate-100" onClick={() => {router.push('/pages/agenda')}}>AGENDA</li>
                 <li className="pedido nav-item-list text-slate-50 cursor-pointer hover:text-slate-100" onClick={() => {router.push('/pages/pedido')}}>PEDIDO</li>
+                { (employee?.employeePermitionType === 'dev') && <li className="menudev nav-item-list text-slate-50 cursor-pointer hover:text-slate-100" onClick={() => {router.push('/pages/menudev')}}>DESENVOLVEDOR</li>}
               </ul>
             </div>
           </div>

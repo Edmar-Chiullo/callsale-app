@@ -1,4 +1,4 @@
-import { ClientProps, EmployeeProps, OrderProps, ProductProps, TaskProps, ItemOrderProps } from "../interface/interfaces";
+import { ClientProps, EmployeeProps, OrderProps, ProductProps, ProductPropss, TaskProps, ItemOrderProps } from "../interface/interfaces";
 import { convertCurrencyToNumber } from "../utils/converter-stringnumber";
 import { fullDate, fullHour } from "../utils/create-date";
 
@@ -15,22 +15,58 @@ export class Employee implements EmployeeProps {
 }
 
 export class Product implements ProductProps {
-    productId: number | null
 	productCod: string | null
 	productDescription: string | null
 	productType: string | null
-	productUnitValor: number | null
+    productNCM: string | null;
+    productAplication: string | null
+	productUnitValue: number | null
 	productRepresented: string | null
     productStatus: string | null
 
-    constructor (props: ProductProps) {
-        this.productId = props.productId
-        this.productCod = props.productCod
-        this.productDescription = props.productDescription
-        this.productType = props.productType
-        this.productUnitValor = props.productUnitValor
-        this.productRepresented = props.productRepresented
-        this.productStatus = props.productStatus
+    constructor ({ ...props }: any) {
+        this.productCod = props.codigo
+        this.productDescription = props.descricao
+        this.productType = props.tipo
+        this.productNCM = props.ncm
+        this.productAplication = props.aplicacao
+        this.productUnitValue = props.valor
+        this.productRepresented = null
+        this.productStatus = null
+    }
+
+    updateStatus(newStatus: string): void {
+        this.productStatus = newStatus;
+    }
+
+    updateRepresented(newRepresented: string): void {
+        this.productRepresented = newRepresented;
+    }
+}
+
+export class ProductS implements ProductPropss {
+	productCod: string | null
+	productDescription: string | null
+	productType: string | null
+	productUnitValue: number | null
+	productRepresented: string | null
+    productStatus: string | null
+
+    constructor ({ ...props }: any) {
+        this.productCod = props.songle
+        this.productDescription = props.descricao
+        this.productType = props.arpe
+        this.productUnitValue = props.valor
+        this.productRepresented = null
+        this.productStatus = null
+    }
+
+    updateStatus(newStatus: string): void {
+        this.productStatus = newStatus;
+    }
+
+    updateRepresented(newRepresented: string): void {
+        this.productRepresented = newRepresented;
     }
 }
 

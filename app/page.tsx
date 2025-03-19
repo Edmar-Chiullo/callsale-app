@@ -13,8 +13,7 @@ import { z } from "zod"
 
 import { getUserAll } from "./controler-firebase/realtime-database"
 import { useLoginContext } from "./context/loginContext/LoginContext"
-import { EmployeeProps } from "./interface/interfaces"
-//import authDatabase from "./controler-firebase/auth-firebase"
+import authDatabase from "./controler-firebase/auth-firebase"
 
 const formSchema = z.object({
   login: z.string().min(2, {
@@ -25,20 +24,12 @@ const formSchema = z.object({
   }),
 })
 
-const EmployeeLogin:EmployeeProps = {
-  employeeId: 2,
-  employeeName: 'DevConxt',
-  employeePermitionType: 'admin'
-}
-
-//////////////////////////////////////////////////////////////////////////////////
-
 export default function Login() {
   useEffect(() => {
     const inputLogin:any = document.querySelector('.login')
     inputLogin.focus()
   }, [])
-  
+
   const router = useRouter()
   const [alertMessage, setAlertMessage] = useState(false) // Controlador mensagem de alerta caso o usuario e senha não corresponderem
   const { setEmployee } = useLoginContext()
@@ -55,43 +46,32 @@ export default function Login() {
     setTimeout(() => {
       setAlertMessage(false)
     }, 3000);
-    
+
   }
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    //const auth = authDatabase().then(e => console.log(e + 'Aqui!'))
-    
-    setEmployee(EmployeeLogin)
+  const auth = authDatabase().then(e => console.log(e + 'Aqui!'))
 
-    router.push('/pages/painel')
-    //const user = getUserAll().then(valor => console.log(valor))
+    getUserAll()
+    .then((users) => {
+      const user = users.map((employee:any) => {
+        if (employee.employeeName+String(employee.employeePassword) === values.login+values.password) setEmployee(employee)
+        return employee.employeeName+String(employee.employeePassword)
+      })
+      .find((element) => element === values.login+values.password)
 
-    // user.then((element) => {
-    //   if (element) { 
-    //     const users = Object.values(element)
-
-    //     users.map(user => {
-    //         const { email, username }:any = user
-            
-    //         if (email === values.login && username === values.password ) {
-    //             setEmployeeName(Employee2.employeeName)
-    //             router.push('/pages/home')
-
-    //         } else {
-    //             setAlertMessage(true)
-    //             showAlert()        
-    //         }
-    //     })
-    //   } else {
-    //     setAlertMessage(true)
-    //     showAlert()
-    //   }        
-    // })
-    form.reset({
-      login: '',  
-      password: ''
+      if (user) {
+        router.push('/pages/painel')
+      } else {
+        setAlertMessage(true)
+        showAlert()
+      }
     })
 
+    form.reset({
+      login: '',
+      password: ''
+    })
   }
 
   return (

@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation"
 
 import { useLoginContext } from "@/app/context/loginContext/LoginContext"
 import { usePedidoContext } from "@/app/context/pedidoContext/PedidoContext"
+import { useProductContext } from "@/app/context/productContext/AllProductGlrContext"
+
 import ItemList from "@/app/utils/item-list"
 
 import { Button } from "@/components/ui/button";
@@ -22,6 +24,7 @@ import { pushOrder, pushOrderItens } from "@/app/controler-firebase/realtime-dat
 import { convertListToArray } from "@/app/utils/convert-list-to-arrar"
 import { calcOrder } from "@/app/utils/calc-order"
 import { convertCurrencyToNumber } from "@/app/utils/converter-stringnumber"
+import { useRepresentedContext } from "@/app/context/repreContext/RepreContext"
 
 
 const formSchema = z.object({
@@ -38,10 +41,10 @@ const formSchema = z.object({
         message: "É nescassario inserir a quantidade.",
     }).max(10),
     productIPI: z.string().min(1, {
-        message: "É nescassario inserir o valor do produto.",
+        message: "É nescassario inserir o IPI.",
     }).max(30),
     productST: z.string().min(1, {
-        message: "É nescassario inserir o valor do produto.",
+        message: "É nescassario inserir o ST.",
     }).max(30),
   })
 
@@ -60,6 +63,8 @@ export default function OrderDetail() {
 
     const { client, order, stateOfOrder, setStateOfOrder } = usePedidoContext()
     const { employee } = useLoginContext()
+    const { productList }:any = useProductContext()
+    const { represented } = useRepresentedContext()
       
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -113,12 +118,36 @@ export default function OrderDetail() {
         setCount(count - 1)
     }
 
+    function changeInputs({productDescription, productUnitValord, productRepresented}:any) {
+        if (productRepresented !== represented) return console.log('Produto não pertence a represantada.')
+        form.setValue('productDescription', productDescription || '')
+        form.setValue('productUnitaryValue', String(productUnitValord) || '')    
+    }
+
     function getProduct(value: string) {
         if (value) {
-            const item = tblProdutoGL.filter((ped) => ped.codigo === value)
-            const { descricao, preco } = item[0]        
-            form.setValue('productDescription', descricao || '')
-            form.setValue('productUnitaryValue', preco || '')    
+            const { GLR, SONGLE }:any = productList
+
+            switch (represented) {
+                case 'GLR':
+                    const repGLR = Object.values(GLR)
+                    const glr = repGLR.filter((ped:any) => ped.productCod === value)    
+                    console.log(glr)
+                    if (!glr[0]) return console.log('Código não pertence a representada!') 
+                    changeInputs(glr[0])       
+                    break;
+            
+                case 'SONGLE':
+                    const repSONGLE = Object.values(SONGLE)
+                    const songle = repSONGLE.filter((ped:any) => ped.productType === value)
+                    console.log(songle)
+                    if (!songle[0]) return console.log('Código não pertence a representada!') 
+                    changeInputs(songle[0])       
+                    break;
+
+                default:
+                break;
+            }
         }
     }
 
@@ -204,11 +233,18 @@ export default function OrderDetail() {
                             <ul className="flex justify-start items-end border rounded-sm h-7 pl-1 w-full">
                                 <li>{order?.orderId}</li>
                             </ul>
+
                         </div>
                         <div className="flex flex-col gap-1 w-[40%] h-10">
                             <span className="text-xs">Desc. Cliente</span>
                             <ul className="flex justify-start items-end border rounded-sm h-7 pl-1 w-full">
-                                    <li>{`${client?.fantasia} - ${client?.cidade}`}</li>
+                                    <li>{`${client?.clientAlias} - ${client?.clientCity}`}</li>
+                            </ul>
+                        </div>
+                        <div className="flex flex-col gap-1 w-[40%] h-10">
+                            <span className="text-xs">Representada</span>
+                            <ul className="flex justify-start items-end border rounded-sm h-7 pl-1 w-full">
+                                    <li>{`${represented}`}</li>
                             </ul>
                         </div>
                     </div>

@@ -8,9 +8,12 @@ import { getDatabase, ref, onValue } from "firebase/database";
 import { app } from "@/app/controler-firebase/firebasekey/firebasekey";
 
 
+import { usePedidoContext } from "@/app/context/pedidoContext/PedidoContext"
+import { useLoginContext } from "@/app/context/loginContext/LoginContext"
+import { useClientContext } from "@/app/context/clientContext/clientContext"
+import { useProductContext } from "@/app/context/productContext/AllProductGlrContext";
+
 import { ClientProps, EmployeeProps, OrderProps } from "@/app/interface/interfaces"
-import { usePedidoContext } from "@/app/context/pedidoContext/PedidoContext";
-import { useLoginContext } from "@/app/context/loginContext/LoginContext";
 import { Order } from "@/app/class/classes";
 
 import { Button } from "@/components/ui/button";
@@ -27,6 +30,7 @@ import { AlterOrder } from "@/app/class/alter-order";
 import { getOrderItens, pushAlterOrder } from "@/app/controler-firebase/realtime-database";
 import { createPDF } from "@/app/utils/create-pdf";
 import stractOrderList from "@/app/utils/stract-order-list";
+import { ComboBoxResponsive } from "./combo-box";
 
 //#########################################################################
 export default function Pedido() {
@@ -40,6 +44,7 @@ export default function Pedido() {
 
   const { setClient, setOrder, setEmployee } = usePedidoContext()
   const { employee }:any = useLoginContext()
+  const { clientList }:any = useClientContext()
 
   const formSchema = z.object({
     client: z.string().min(2, {
@@ -58,7 +63,7 @@ export default function Pedido() {
     const inputLogin:any = document.querySelector('.cod-cliente')
     inputLogin.focus()
   }, [])
-  
+
   // Este código verifica se há algum usuario logado para ai permanecer na página.
   // Caso não aja uma entrada através do login e senha a pessoa será redirecionada a página de login 
   useEffect(() => {
@@ -124,9 +129,10 @@ export default function Pedido() {
   function onSubmit(values: z.infer<typeof formSchema>) {  
 
     const cliente = clienteCarteira.filter((value) => String(value.cliCOD) === values.client ? value : false)  
+    const cli = clientList.filter((value:any) => String(value.clientCode) === values.client ? value : false)
 
     if (cliente.length !== 0) {
-      const objCliente:any = cliente[0]
+      const objCliente:any = cli[0]
 
       const order = new Order(employee, objCliente, true)
 
@@ -180,6 +186,10 @@ export default function Pedido() {
   return (
     <div className="relative flex flex-col gap-3 justify-end items-center w-full h-full p-4">  
       <div className="box-btn-add-item flex justify-center items-center w-full h-[10%] pr-2">
+        <div className="flex flex-col gap-2">
+          <label htmlFor="rp">Representada</label>
+          <ComboBoxResponsive />
+        </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="flex justify-end items-center gap-4 w-full">
             <FormField

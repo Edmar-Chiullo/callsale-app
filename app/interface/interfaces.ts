@@ -6,11 +6,11 @@ export interface EmployeeProps {
 }
 
 export interface ClientProps {
-    cliCOD: number | null,
-    razao: string | null// Typo de permissão que o usuário possui. admin (Gestor) | fun (Funcionátio),
-    fantasia: string | null,
-    cidade: string | null,
-    atuacao: string | null
+    clientCode: number | null,
+    clientName: string | null// Typo de permissão que o usuário possui. admin (Gestor) | fun (Funcionátio),
+    clientAlias: string | null,
+    clientCity: string | null,
+    clientActing: string | null
 }
 
 export interface ProductProps {

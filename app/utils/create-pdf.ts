@@ -1,4 +1,5 @@
 import jsPDF from 'jspdf'
+import { Divide } from 'lucide-react';
 
 
 function calcFullValue(value:any, QValue:any) {
@@ -8,7 +9,8 @@ function calcFullValue(value:any, QValue:any) {
 
 export function createPDF(order:any, orderItens:any) {
     const arr = orderItens
-
+    const fullValueNote = arr.map(({productUnitaryValue, productQuantity}:any) => calcFullValue(productUnitaryValue, productQuantity)).reduce((calc=0, value=0) => calc + value)
+    
     var doc = new jsPDF();
 
     //Cabeçalho...
@@ -17,22 +19,27 @@ export function createPDF(order:any, orderItens:any) {
     doc.text(`Cód. Pedido: ${order.orderId}`, 15, 50)
 
     doc.text(`Cod. Cliente: ${order.orderCliCOD}      Nome: ${order.orderFantasia}     Cidade: `, 15, 55)
+    doc.line(15, 58, 195, 58, 'DF')
 
     //Corpo...
     let countItens = 0
-    let positionItens = 100
-    doc.setFontSize(8)
+    let positionYItens = 100
+    doc.text(`Item      Cód. Produto        Descrição                                                                   Valor Uni.      Qtd        IPI        ST           Total`, 15, 100)
+    doc.setFontSize(7)
     
     arr.map(({productCod, productDescription, productIPI, productQuantity, productST, productUnitaryValue}:any) => {
-        positionItens = positionItens + 4
+        positionYItens = positionYItens + 4
         countItens++
-        doc.text(`${countItens} - ${productCod} - ${productDescription} - ${productUnitaryValue} - ${productQuantity} - ${productIPI}% - ${productST}% - ${calcFullValue(productUnitaryValue, productQuantity)}`, 15, positionItens)
-        doc.line(0, positionItens + 2, 0, positionItens + 2)
+        doc.text(`${countItens}               ${productCod}                ${productDescription}                R$ ${productUnitaryValue}               ${productQuantity}              ${productIPI}%           ${productST}%               R$ ${calcFullValue(productUnitaryValue, productQuantity).toFixed(2)}`, 15, positionYItens)
+        doc.line(0, positionYItens + 2, 0, positionYItens + 2)
+        doc.line(15, positionYItens + 1, 195, positionYItens + 1, 'DF')
     })
 
     //Rodapé...
-
+    doc.text(`Valor Total: R$ ${fullValueNote}`, 175, 268)
+    doc.line(15, 270, 195, 270, 'DF')
 
     doc.save(`PED_${order.orderFantasia}.pdf`)
+
 
 }

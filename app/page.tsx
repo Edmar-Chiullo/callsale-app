@@ -11,8 +11,11 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
-import { getUserAll } from "./controler-firebase/realtime-database"
+import { getUserAll, getProductAll, getClientAll } from "./controler-firebase/realtime-database"
 import { useLoginContext } from "./context/loginContext/LoginContext"
+import { useProductContext } from "./context/productContext/AllProductGlrContext"
+import { useClientContext } from "./context/clientContext/clientContext"
+
 import authDatabase from "./controler-firebase/auth-firebase"
 
 const formSchema = z.object({
@@ -31,8 +34,12 @@ export default function Login() {
   }, [])
 
   const router = useRouter()
+
   const [alertMessage, setAlertMessage] = useState(false) // Controlador mensagem de alerta caso o usuario e senha não corresponderem
+  
   const { setEmployee } = useLoginContext()
+  const { setProductList } = useProductContext()
+  const { setClientList } = useClientContext()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -50,7 +57,7 @@ export default function Login() {
   }
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-  const auth = authDatabase().then(e => console.log(e + 'Aqui!'))
+    const auth = authDatabase().then(e => console.log(e + 'Aqui!'))
 
     getUserAll()
     .then((users) => {
@@ -68,6 +75,12 @@ export default function Login() {
       }
     })
 
+    getProductAll()
+    .then((represented) => setProductList(represented[0]))
+
+    getClientAll()
+    .then((represented) => setClientList(represented))
+   
     form.reset({
       login: '',
       password: ''

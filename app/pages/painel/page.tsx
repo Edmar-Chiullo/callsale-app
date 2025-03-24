@@ -10,11 +10,16 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { getDatabase, ref, onValue } from "firebase/database";
 import { app } from "@/app/controler-firebase/firebasekey/firebasekey";
 import stractOrderList from "@/app/utils/stract-order-list"
+import { useProductContext } from "@/app/context/productContext/AllProductGlrContext"
+import { useClientContext } from "@/app/context/clientContext/clientContext"
 
 export default function Home() {
   const database = getDatabase(app)
 
   const { employee } = useLoginContext()
+  const { productList } = useProductContext()
+  const { clientList } = useClientContext()
+
   const router = useRouter()
   const [ order, setOrder ] = useState<string[]>([])
   const [ agenda, setAgenda ] = useState<string[]>([])
@@ -51,7 +56,7 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    const dataTask = ref(database, 'tasks/' + fullDate());
+    const dataTask = ref(database, 'tasks/' + fullDate())
     const task = onValue(dataTask, (snapshot) => {
       if (snapshot.exists()) {
         const agenda:any = Object.values(snapshot.val())
@@ -59,8 +64,7 @@ export default function Home() {
       } else {
         setFailTask('Não há dados!')
       }
-    });
-
+    })
     return () => task()
   },[])
 

@@ -1,6 +1,9 @@
-import type { Metadata } from "next";
-import { LoginContextProvider } from "./context/loginContext/LoginContextProvider";
-import "./globals.css";
+import type { Metadata } from "next"
+import "./globals.css"
+
+import { ProductContextProvider } from "./context/productContext/AllProductGlrProvider"
+import { LoginContextProvider } from "./context/loginContext/LoginContextProvider"
+import { ClientContextProvider } from "./context/clientContext/clienteContextProvider"
 
 export const metadata: Metadata = {
   title: "DH Televendas - Painel",
@@ -16,14 +19,18 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body>            
-      <LoginContextProvider>
-        <div className="content-app flex w-full h-svh">
-          <div className="box-content flex justify-center items-center w-full rounded-lg">
-              {children}
-          </div>
-        </div>
-      </LoginContextProvider>
-    </body>
+        <ClientContextProvider>
+          <ProductContextProvider>
+            <LoginContextProvider>
+              <div className="content-app flex w-full h-svh">
+                <div className="box-content flex justify-center items-center w-full rounded-lg">
+                    {children}
+                </div>
+              </div>
+            </LoginContextProvider>
+          </ProductContextProvider>
+        </ClientContextProvider>
+      </body>
     </html>
   );
 }

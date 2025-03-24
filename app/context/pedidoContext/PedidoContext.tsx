@@ -2,7 +2,7 @@
 
 import { createContext, useContext } from "react";
 //
-import { ClientProps, EmployeeProps, OrderProps } from "@/app/interface/interfaces";
+import { ClientProps, EmployeeProps } from "@/app/interface/interfaces";
 import { Order } from "@/app/class/classes";
 
 interface PedidoContextProps {
@@ -22,7 +22,7 @@ export const usePedidoContext = () => {
   const context = useContext(PedidoContext);
   
   if (!context) {
-    throw new Error('useLoginContext must be used within a LoginContextProvider');
+    throw new Error('usePedidoContext must be used within a PedidoContextProvider');
   }
   return context;
 };

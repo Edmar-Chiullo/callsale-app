@@ -6,11 +6,13 @@ export class Employee implements EmployeeProps {
     employeeId: number | null
     employeeName: string | null
     employeePermitionType: string | null
+    employeePassword: string | null
 
     constructor (props: EmployeeProps ) {
         this.employeeId = props.employeeId
         this.employeeName = props.employeeName
     	this.employeePermitionType = props.employeePermitionType
+        this.employeePassword = props.employeePassword
     }
 }
 
@@ -86,12 +88,12 @@ export class Order implements OrderProps {
         client: ClientProps,
         status: boolean
     ) {
-        this.orderId = `${client.fantasia?.slice(0,2)}${String(client.cliCOD)?.slice(0,2).toString().split('-', 2)}-${fullHour()}`
+        this.orderId = `${client.clientAlias?.slice(0,2)}${String(client.clientCode)?.slice(0,2).toString().split('-', 2)}-${fullHour()}`
         this.orderEmployeeId = employee.employeeId
         this.orderEmployeeName = employee?.employeeName
-        this.orderCliCOD = client.cliCOD
+        this.orderCliCOD = client.clientCode
         this.orderValue = 0
-        this.orderFantasia = client.fantasia
+        this.orderFantasia = client.clientAlias
         this.orderDate = fullDate()
         this.orderHour = fullHour()
         this.orderStatus = status

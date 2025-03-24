@@ -46,14 +46,7 @@ export function createProductS({ ...props }:ProductPropss) {
     productStatus: props.productStatus
   });
 }
-// OnValue executa um ouvinte que retorna os valores apartetir da ramificassão no banco de dados.
-// Uma vez executado o onValue fica observando e qualquer alteração executada apartir do ponto implantado "users/" retorna a atualização.
-// Caso não exista dados onValue retorna false para o método 'exists()' e null quando você chamar 'val()'  
-export async function getUserAll() {
-  const date = ref(database)
-  return await get(child(date, 'users/')).then((snapshot) => Object.values(snapshot.val()))
 
-}
 // Gravar dados em um lugar especifico usando o método set().
 // O método set() (altera todos os dados abaixo na árvore como uma atualizção) 
 // Agenda set() substitui os dados no local especificado, incluindo quaisquer nós filhos.
@@ -104,7 +97,9 @@ export function pushAlterOrder({ ...props }:any | null) {
 
 export async function getOrderItens(id:any, date:any) {
   const dbRef = ref(getDatabase(app))
-  return await get(child(dbRef, 'itens-order/' + date + '/' + id ))
+  console.log(`itens-order/${date}/${id} `)
+  console.log(`itens-order/${fullDate().slice(4,8)}/${fullDate().slice(2,8)}/${fullDate().slice(0,2)}/${id}`)
+  return await get(child(dbRef, `order-itens/${fullDate().slice(4,8)}/${fullDate().slice(2,8)}/${fullDate().slice(0,2)}/${id}`))
   .then((snapshot) => {
     if (snapshot.exists()) {
       return snapshot.val()
@@ -115,4 +110,22 @@ export async function getOrderItens(id:any, date:any) {
   .catch((error) => {
     return error
   });
+}
+
+// OnValue executa um ouvinte que retorna os valores apartetir da ramificassão no banco de dados.
+// Uma vez executado o onValue fica observando e qualquer alteração executada apartir do ponto implantado "users/" retorna a atualização.
+// Caso não exista dados onValue retorna false para o método 'exists()' e null quando você chamar 'val()'  
+export async function getUserAll() {
+  const date = ref(database)
+  return await get(child(date, 'users/')).then((snapshot) => Object.values(snapshot.val()))
+}
+
+export async function getProductAll() {
+  const date = ref(database)
+  return await get(child(date, 'product/')).then((snapshot) => Object.values(snapshot.val()))
+}
+
+export async function getClientAll() {
+  const date = ref(database)
+  return await get(child(date, 'client/')).then((snapshot) => Object.values(snapshot.val()))
 }

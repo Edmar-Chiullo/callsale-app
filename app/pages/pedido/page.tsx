@@ -172,7 +172,7 @@ export default function Pedido() {
   function createPdf(index:any) {
     const value = getElmentValueId(index)
     const val = new AlterOrder(getOrder(value))
-
+    console.log(val)
     setOrders(val)
 
     getOrderItens(value, val.orderDate).then((value) => {

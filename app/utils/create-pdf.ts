@@ -1,6 +1,4 @@
 import jsPDF from 'jspdf'
-import { Divide } from 'lucide-react';
-
 
 function calcFullValue(value:any, QValue:any) {
     const result = Number(QValue) * Number(value)
@@ -8,6 +6,7 @@ function calcFullValue(value:any, QValue:any) {
 }
 
 export function createPDF(order:any, orderItens:any) {
+    console.log(order)
     const arr = orderItens
     const fullValueNote = arr.map(({productUnitaryValue, productQuantity}:any) => calcFullValue(productUnitaryValue, productQuantity)).reduce((calc=0, value=0) => calc + value)
     
@@ -18,7 +17,7 @@ export function createPDF(order:any, orderItens:any) {
     doc.setFontSize(9)
     doc.text(`Cód. Pedido: ${order.orderId}`, 15, 50)
 
-    doc.text(`Cod. Cliente: ${order.orderCliCOD}      Nome: ${order.orderFantasia}     Cidade: `, 15, 55)
+    doc.text(`Cod. Cliente: ${order.orderCliCOD}      Nome: ${order.orderFantasia}     Cidade: `, 15, 57)
     doc.line(15, 58, 195, 58, 'DF')
 
     //Corpo...
@@ -36,7 +35,8 @@ export function createPDF(order:any, orderItens:any) {
     })
 
     //Rodapé...
-    doc.text(`Valor Total: R$ ${fullValueNote}`, 175, 268)
+    doc.setFontSize(8)
+    doc.text(`Valor Total: R$ ${fullValueNote}`, 164, 269)
     doc.line(15, 270, 195, 270, 'DF')
 
     doc.save(`PED_${order.orderFantasia}.pdf`)

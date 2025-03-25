@@ -5,8 +5,7 @@ function calcFullValue(value:any, QValue:any) {
     return result
 }
 
-export function createPDF(order:any, orderItens:any) {
-    console.log(order)
+export function createPDF(order:any, orderItens:any, client:any) {
     const arr = orderItens
     const fullValueNote = arr.map(({productUnitaryValue, productQuantity}:any) => calcFullValue(productUnitaryValue, productQuantity)).reduce((calc=0, value=0) => calc + value)
     
@@ -15,9 +14,13 @@ export function createPDF(order:any, orderItens:any) {
     //Cabeçalho...
     doc.addImage("/logoPDF.png", 10, 3, 24, 24)
     doc.setFontSize(9)
+
+    doc.text(`Data: ${order.orderDate.slice(0,2)}/${order.orderDate.slice(2,4)}/${order.orderDate.slice(4,8)}`, 145, 15)
+    doc.text(`Hora: ${order.orderHour.slice(0,2)}:${order.orderHour.slice(2,4)}`, 175, 15)
+    
     doc.text(`Cód. Pedido: ${order.orderId}`, 15, 50)
 
-    doc.text(`Cod. Cliente: ${order.orderCliCOD}      Nome: ${order.orderFantasia}     Cidade: `, 15, 57)
+    doc.text(`Cod. Cliente: ${order.orderCliCOD}      Nome: ${order.orderFantasia}     Cidade: ${client.clientCity}`, 15, 57)
     doc.line(15, 58, 195, 58, 'DF')
 
     //Corpo...

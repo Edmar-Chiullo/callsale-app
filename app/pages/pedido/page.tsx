@@ -13,7 +13,6 @@ import { useLoginContext } from "@/app/context/loginContext/LoginContext"
 import { useClientContext } from "@/app/context/clientContext/clientContext"
 import { useProductContext } from "@/app/context/productContext/AllProductGlrContext";
 
-import { ClientProps, EmployeeProps, OrderProps } from "@/app/interface/interfaces"
 import { Order } from "@/app/class/classes";
 
 import { Button } from "@/components/ui/button";
@@ -172,13 +171,15 @@ export default function Pedido() {
   function createPdf(index:any) {
     const value = getElmentValueId(index)
     const val = new AlterOrder(getOrder(value))
-    console.log(val)
     setOrders(val)
 
+    const client = clientList.find(({clientCode}:any) => clientCode === orders?.orderCliCOD)
+        
     getOrderItens(value, val.orderDate).then((value) => {
       const val = Object.values(value)
+
       val.map((list:any) => {
-        createPDF(orders, list)
+        createPDF(orders, list, client)
       })
     })
   }

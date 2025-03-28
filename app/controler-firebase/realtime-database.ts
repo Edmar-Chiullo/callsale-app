@@ -97,8 +97,6 @@ export function pushAlterOrder({ ...props }:any | null) {
 
 export async function getOrderItens(id:any, date:any) {
   const dbRef = ref(getDatabase(app))
-  console.log(date)
-  console.log(`itens-order/${fullDate().slice(4,8)}/${fullDate().slice(2,8)}/${fullDate().slice(0,2)}/${id}`)
   return await get(child(dbRef, `order-itens/${fullDate().slice(4,8)}/${fullDate().slice(2,8)}/${date.slice(0,2)}/${id}`))
   .then((snapshot) => {
     if (snapshot.exists()) {

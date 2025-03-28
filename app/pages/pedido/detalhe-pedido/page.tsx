@@ -370,7 +370,7 @@ export default function OrderDetail() {
                             </div>
                         </ul>
                     </div>
-                    <ScrollArea className="flex flex-col p-1 w-full h-[92%]">
+                    <ScrollArea className="flex flex-col pt-1 w-full h-[92%]">
                         {
                             itemInterface.map((item:any, key:any) => {
                                 if (item) {
@@ -380,11 +380,11 @@ export default function OrderDetail() {
                                      const  fullValueUnity = productQuantityUnity.toFixed(2)
                                     return (
                                         <div key={key} className="relative flex flex-col justify-between items-center mb-[2px] w-full h-7 rounded-sm hover:bg-slate-300 bg-slate-200">
-                                            <ul className="grid grid-cols-[50px_150px_430px_100px_50px_50px_50px_80px] place-content-start w-full">
-                                                <li>{key + 1}</li>
+                                            <ul className="grid grid-cols-[50px_150px_430px_100px_50px_50px_50px_80px] place-content-start w-full pl-3">
+                                                <li >{key + 1}</li>
                                                 <li>{productCod}</li>
                                                 <li>{productDescription}</li>
-                                                <li>{productUnitaryValue}</li>
+                                                <li>{'R$' + ' ' + productUnitaryValue}</li>
                                                 <li>{productQuantity}</li>
                                                 <li>{productST + '%'}</li>
                                                 <li>{productIPI + '%'}</li>

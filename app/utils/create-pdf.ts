@@ -16,7 +16,7 @@ export function createPDF(order:any, orderItens:any, client:any) {
     doc.setFontSize(9)
 
     doc.text(`Data: ${order.orderDate.slice(0,2)}/${order.orderDate.slice(2,4)}/${order.orderDate.slice(4,8)}`, 145, 15)
-    doc.text(`Hora: ${order.orderHour.slice(0,2)}:${order.orderHour.slice(2,4)}`, 175, 15)
+    doc.text(`Hora: ${order.orderHour.slice(0,2)}:${order.orderHour.slice(2,4)}:${order.orderHour.slice(4,6)}`, 175, 15)
     
     doc.text(`Cód. Pedido: ${order.orderId}`, 15, 50)
 
@@ -43,6 +43,4 @@ export function createPDF(order:any, orderItens:any, client:any) {
     doc.line(15, 270, 195, 270, 'DF')
 
     doc.save(`PED_${order.orderFantasia}.pdf`)
-
-
 }

@@ -2,7 +2,7 @@ import { ClientProps, EmployeeProps, OrderProps, ProductProps, ProductPropss, Ta
 import { convertCurrencyToNumber } from "../utils/converter-stringnumber";
 import { fullDate, fullHour } from "../utils/create-date";
 
-export class Employee implements EmployeeProps {    
+export class Employee implements EmployeeProps {
     employeeId: number | null
     employeeName: string | null
     employeePermitionType: string | null
@@ -84,7 +84,7 @@ export class Order implements OrderProps {
     orderStatus: boolean | null
 
     constructor(
-        employee: EmployeeProps, 
+        employee: EmployeeProps,
         client: ClientProps,
         status: boolean
     ) {
@@ -131,7 +131,7 @@ export class Task implements TaskProps {
         this.taskAgendaState = props.taskAgendaState
     }
 }
-  
+
 export class ItemOrder implements ItemOrderProps {
     productCod: string | null;
     productDescription: string | null;
@@ -139,7 +139,7 @@ export class ItemOrder implements ItemOrderProps {
     productQuantity: string | null;
     productIPI: string | null;
     productST: string | null;
-  
+
     constructor(props: ItemOrderProps) {
       this.productCod = props.productCod;
       this.productDescription = props.productDescription;
@@ -156,14 +156,17 @@ export class ItemOrder implements ItemOrderProps {
       const st = parseFloat(this.productST ?? "0")
 
       const quantity = parseFloat(this.productQuantity ?? "0");
-  
-      return isNaN(value) || isNaN(quantity) ? null : ((ipi + st ) + value * quantity) ;
+
+    //   const productImpos = value + (value * ipi)
+    //   return isNaN(value) || isNaN(quantity) ? null : productImpos ;
+
+        return isNaN(value) || isNaN(quantity) ? null : ((ipi + st ) + value * quantity) ;
     }
 
     get productQuantityUnity(): number | null {
         const unitaryValue = this.productUnitaryValue;
         const value:any = convertCurrencyToNumber(unitaryValue)
-        const impostos = Number(this.productST) + Number(this.productIPI) 
+        const impostos = Number(this.productST) + Number(this.productIPI)
         const qt = Number(this.productQuantity)
         const result = (value + impostos) * qt
 

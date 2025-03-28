@@ -85,7 +85,6 @@ export default function Pedido() {
       }
     });
 
-
     return () => unsubscribe();
   }, []);
 
@@ -151,7 +150,6 @@ export default function Pedido() {
 
   function pushAlterStateOrder(value:any) {
     const val = value.target.innerText
-    console.log(val)
     switch (val) {
       case 'Confirmar':
         orders?.setState(false)
@@ -170,16 +168,16 @@ export default function Pedido() {
 
   function createPdf(index:any) {
     const value = getElmentValueId(index)
-    const val = new AlterOrder(getOrder(value))
-    setOrders(val)
+    const order = new AlterOrder(getOrder(value))
+    setOrders(order)
 
-    const client = clientList.find(({clientCode}:any) => clientCode === orders?.orderCliCOD)
-        
-    getOrderItens(value, val.orderDate).then((value) => {
-      const val = Object.values(value)
+    const client = clientList.find(({clientCode}:any) => clientCode === order?.orderCliCOD)
 
-      val.map((list:any) => {
-        createPDF(orders, list, client)
+    getOrderItens(value, order.orderDate).then((value) => {
+      const list = Object.values(value)
+
+      list.map((item:any) => {
+        createPDF(order, item, client)
       })
     })
   }

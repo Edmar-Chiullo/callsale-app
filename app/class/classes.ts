@@ -150,26 +150,20 @@ export class ItemOrder implements ItemOrderProps {
     }
 
     get productFullValue(): number | null {
-      const unitaryValue = this.productUnitaryValue;
-      const value:any = convertCurrencyToNumber(unitaryValue)
-      const ipi = parseFloat(this.productIPI ?? "0")
-      const st = parseFloat(this.productST ?? "0")
-
-      const quantity = parseFloat(this.productQuantity ?? "0");
-
-    //   const productImpos = value + (value * ipi)
-    //   return isNaN(value) || isNaN(quantity) ? null : productImpos ;
-
-        return isNaN(value) || isNaN(quantity) ? null : ((ipi + st ) + value * quantity) ;
-    }
-
-    get productQuantityUnity(): number | null {
-        const unitaryValue = this.productUnitaryValue;
+        const unitaryValue = this.productUnitaryValue;  
         const value:any = convertCurrencyToNumber(unitaryValue)
-        const impostos = Number(this.productST) + Number(this.productIPI)
-        const qt = Number(this.productQuantity)
-        const result = (value + impostos) * qt
+        
+        const ipi = parseFloat(this.productIPI?.replace(',','.') ?? "0")
+        const st = parseFloat(this.productST?.replace(',','.') ?? "0")
 
-        return result
+        const productI = (value + ((value * ipi)/ 100))
+        const productS = ((productI * st) / 100)
+
+        const result = productI + productS
+
+        const quantity = parseFloat(this.productQuantity ?? "0");
+
+        return isNaN(value) || isNaN(quantity) ? null : (quantity * result.toFixed(2)) ;
     }
+
 }

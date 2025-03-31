@@ -16,14 +16,11 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { number, z } from "zod"
+import { z } from "zod"
 
-import { tblProdutoGL } from "@/data/tabela-produto-GL"
-import { ItemOrder, Order } from "@/app/class/classes"
+import { ItemOrder } from "@/app/class/classes"
 import { pushOrder, pushOrderItens } from "@/app/controler-firebase/realtime-database"
 import { convertListToArray } from "@/app/utils/convert-list-to-arrar"
-import { calcOrder } from "@/app/utils/calc-order"
-import { convertCurrencyToNumber } from "@/app/utils/converter-stringnumber"
 import { useRepresentedContext } from "@/app/context/repreContext/RepreContext"
 
 
@@ -61,7 +58,7 @@ export default function OrderDetail() {
 
     const router = useRouter()
 
-    const { client, order, stateOfOrder, setStateOfOrder } = usePedidoContext()
+    const { client, order, setStateOfOrder } = usePedidoContext()
     const { employee } = useLoginContext()
     const { productList }:any = useProductContext()
     const { represented } = useRepresentedContext()
@@ -162,7 +159,7 @@ export default function OrderDetail() {
         })
     }
 
-    function calcOrderValue(value: number) {
+    function calcOrderValue(value: any) {
         setOrderValue((lastValue) => [...lastValue, value])
     }
 
@@ -170,8 +167,7 @@ export default function OrderDetail() {
         const itemOrder = new ItemOrder(values)
         const fullValue = itemOrder.productFullValue
 
-        const value:any = itemOrder.productQuantityUnity
-        calcOrderValue(value)
+        calcOrderValue(fullValue)
 
         setItemFullValue(fullValue)
 
@@ -361,7 +357,7 @@ export default function OrderDetail() {
                                 <li className="col-start-2 col-span-1">Cod. Item</li>
                                 <li className="col-start-3 col-span-1">Descrição</li>
                             </div>
-                            <div className="grid grid-cols-[100px_50px_50px_50px_80px] w-full">
+                            <div className="grid grid-cols-[100px_50px_70px_70px_80px] w-full">
                                 <li className="col-start-1 col-span-1">Valor Uni.</li>
                                 <li className="col-start-2 col-span-1">Qt.</li>
                                 <li className="col-start-3 col-span-1">IPI</li>
@@ -375,19 +371,19 @@ export default function OrderDetail() {
                             itemInterface.map((item:any, key:any) => {
                                 if (item) {
                                     const { productId, productCod, productDescription, productUnitaryValue, productQuantity,
-                                        productST, productIPI, productQuantityUnity
+                                        productST, productIPI, productFullValue
                                      } = item
-                                     const  fullValueUnity = productQuantityUnity.toFixed(2)
+                                     const  fullValueUnity = productFullValue.toFixed(2)
                                     return (
                                         <div key={key} className="relative flex flex-col justify-between items-center mb-[2px] w-full h-7 rounded-sm hover:bg-slate-300 bg-slate-200">
-                                            <ul className="grid grid-cols-[50px_150px_430px_100px_50px_50px_50px_80px] place-content-start w-full pl-3">
+                                            <ul className="grid grid-cols-[50px_150px_430px_100px_45px_70px_70px_80px] place-content-start w-full pl-3">
                                                 <li >{key + 1}</li>
                                                 <li>{productCod}</li>
                                                 <li>{productDescription}</li>
                                                 <li>{'R$' + ' ' + productUnitaryValue}</li>
                                                 <li>{productQuantity}</li>
-                                                <li>{productST + '%'}</li>
                                                 <li>{productIPI + '%'}</li>
+                                                <li>{productST + '%'}</li>
                                                 <li>{'R$' + ' ' + fullValueUnity}</li>
                                             </ul>
                                             <Button className="absolute right-0 top-0 h-[94%] rounded-sm shadow-sm shadow-black" onClick={() => removeElement(key, fullValueUnity)}>Exluir</Button>

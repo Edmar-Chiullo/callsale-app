@@ -1,3 +1,4 @@
+import { OrderProps } from "../interface/interfaces"
 
 export class AlterOrder {
     orderCliCOD: number | null
@@ -12,7 +13,7 @@ export class AlterOrder {
     orderObservation: string | null
 
 
-    constructor(order: any) {
+    constructor(order: OrderProps | any) {
         this.orderCliCOD = order.orderCliCOD
         this.orderDate = order.orderDate        
         this.orderId = order.orderId

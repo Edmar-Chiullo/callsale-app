@@ -9,7 +9,7 @@ class NodeList {
     }
 }
 
-class ItemList {
+export class ItemList {
     count: number
     head: NodeList | undefined
     constructor() {
@@ -64,5 +64,3 @@ class ItemList {
         return undefined
     }
 }
-
-export default ItemList

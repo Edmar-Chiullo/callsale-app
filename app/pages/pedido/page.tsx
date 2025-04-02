@@ -30,6 +30,7 @@ import { getOrderItens, pushAlterOrder } from "@/app/controler-firebase/realtime
 import { createPDF } from "@/app/utils/create-pdf";
 import stractOrderList from "@/app/utils/stract-order-list";
 import { ComboBoxResponsive } from "./combo-box";
+import FormObservation from "./detalhe-pedido/form-observation";
 
 //#########################################################################
 export default function Pedido() {
@@ -40,6 +41,9 @@ export default function Pedido() {
   const [ cardConfirm, setCardConfirm ] = useState<boolean>(false)
   const [ countItem, setCountItem ] = useState(0)
   const [ itemInterface, setItemInterface ] = useState<string[]>([])
+  const [ inputObservation, setInputObservation ] = useState<boolean>(false)
+  const [ observation, setObservation ] = useState<string>('')
+  const [ elementPrint, setElementPrint ] = useState<any>()
 
   const { setClient, setOrder, setEmployee } = usePedidoContext()
   const { employee }:any = useLoginContext()
@@ -87,6 +91,10 @@ export default function Pedido() {
 
     return () => unsubscribe();
   }, []);
+ 
+  useEffect(() => {
+
+  }, [observation])
 
   function getElmentValueId(index:any) {
     const li = index.target.parentElement
@@ -166,10 +174,21 @@ export default function Pedido() {
     pushAlterOrder(orders)
   }
 
-  function createPdf(index:any) {
-    const value = getElmentValueId(index)
-    const order = new AlterOrder(getOrder(value))
-    setOrders(order)
+  function alterStatusObservation(value: any, observaion: string) {
+    setInputObservation(value)
+    setObservation(observaion)
+    createPdf(observaion)
+  }
+
+  function getElement(index:any) {
+    setInputObservation(true)
+    setElementPrint(index)
+  }
+
+  function createPdf(index:string) {
+    const value = getElmentValueId(elementPrint)
+    const order:any = new AlterOrder(getOrder(value))
+    order.setObservation(index)
 
     const client = clientList.find(({clientCode}:any) => clientCode === order?.orderCliCOD)
 
@@ -256,13 +275,14 @@ export default function Pedido() {
                           <li className="col-start-7 pl-3">{`R$ ${Number(orderValue).toFixed(2)}`}</li>
                           <li className="col-start-8 pl-3">{`${formattedDate}`}</li>
                           <li className="col-start-9 mr-[-40px] place-self-end"><Button onClick={(value) => alterState(value)} className="h-8 bg-zinc-900 hover:bg-zinc-950 text-slate-50">{state}</Button></li>   
-                          <li className="col-start-10 place-self-end"><Button onClick={(value) => createPdf(value)} className="h-8 bg-zinc-900 hover:bg-zinc-950 text-slate-50">PDF</Button></li>   
+                          <li className="col-start-10 place-self-end"><Button onClick={(value) => getElement(value)} className="h-8 bg-zinc-900 hover:bg-zinc-950 text-slate-50">PDF</Button></li>   
                         </ul>
                       </div>
                     )
                 })
               }
             </ScrollArea>
+            {inputObservation && <FormObservation alterState={alterStatusObservation} />}
           </div>                
       </div>       
     </div>

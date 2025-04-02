@@ -9,6 +9,8 @@ export class AlterOrder {
     orderHour: string | null
     orderValue: number | null
     orderStatus: boolean | null
+    orderObservation: string | null
+
 
     constructor(order: any) {
         this.orderCliCOD = order.orderCliCOD
@@ -20,9 +22,15 @@ export class AlterOrder {
         this.orderHour = order.orderHour
         this.orderValue = order.orderValue
         this.orderStatus = order.orderStatus
+        this.orderObservation = null
+
     }
 
     setState(status: boolean): void {
         this.orderStatus = status
     }
+
+    setObservation(value:string): void {
+        this.orderObservation = value
+    } 
 }

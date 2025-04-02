@@ -6,7 +6,7 @@ function calcFullValue({ ...value }:any) {
     const ipi = Number(value.ipi.replace(',','.'))
     const st = Number(value.st.replace(',','.'))
 
-    const resultIPI =  unitValue + ((unitValue * ipi)/ 100)
+    const resultIPI =  unitValue + ((unitValue * ipi) / 100)
     const resultST = ((resultIPI * st) / 100)
 
     const result = resultIPI + resultST
@@ -41,7 +41,13 @@ export function createPDF(order:any, orderItens:any, client:any) {
     doc.text(`Cidade: ${client.clientCity}`, 115, 57)
     doc.line(15, 58, 195, 58, 'DF')
 
+    //Observações...
+    doc.text(`Observações:`, 15, 63)
+    doc.setFontSize(8)
+    doc.text(`${order.orderObservation}`, 16, 67)
+
     //Corpo...
+    doc.setFontSize(9)
     let countItens = 0
     let positionYItens = 100
     doc.text(`Item`, 15, 100)

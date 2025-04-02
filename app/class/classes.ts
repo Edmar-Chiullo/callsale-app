@@ -82,6 +82,7 @@ export class Order implements OrderProps {
     orderDate: string | null
     orderHour: string | null
     orderStatus: boolean | null
+    orderObservation: string | null
 
     constructor(
         employee: EmployeeProps,
@@ -97,6 +98,7 @@ export class Order implements OrderProps {
         this.orderDate = fullDate()
         this.orderHour = fullHour()
         this.orderStatus = status
+        this.orderObservation = ''
     }
 
     updateStatus(newStatus: boolean): void {
@@ -106,6 +108,10 @@ export class Order implements OrderProps {
     setValue(value: number): void {
         this.orderValue = value
     }
+
+    setObservation(value:string): void {
+        this.orderObservation = value
+    } 
 }
 
 export class Task implements TaskProps {
@@ -151,10 +157,10 @@ export class ItemOrder implements ItemOrderProps {
 
     get productFullValue(): number | null {
         const unitaryValue = this.productUnitaryValue;  
-        const value:any = convertCurrencyToNumber(unitaryValue)
+        const value:any = convertCurrencyToNumber(unitaryValue);
         
-        const ipi = parseFloat(this.productIPI?.replace(',','.') ?? "0")
-        const st = parseFloat(this.productST?.replace(',','.') ?? "0")
+        const ipi = parseFloat(this.productIPI?.replace(',','.') ?? "0");
+        const st = parseFloat(this.productST?.replace(',','.') ?? "0");
 
         const productI = (value + ((value * ipi)/ 100))
         const productS = ((productI * st) / 100)
@@ -163,7 +169,7 @@ export class ItemOrder implements ItemOrderProps {
 
         const quantity = parseFloat(this.productQuantity ?? "0");
 
-        return isNaN(value) || isNaN(quantity) ? null : (quantity * result.toFixed(2)) ;
+        return isNaN(value) || isNaN(quantity) ? null : (quantity * result.toFixed(2));
     }
 
 }

@@ -42,9 +42,17 @@ export function createPDF(order:any, orderItens:any, client:any) {
     doc.line(15, 58, 195, 58, 'DF')
 
     //Observações...
+    const maxWidth = 180; // Defina a largura máxima antes de quebrar o texto
+    const startX = 16;
+    const startY = 67;
+    const lineHeight = 10;
     doc.text(`Observações:`, 15, 63)
     doc.setFontSize(8)
-    doc.text(`${order.orderObservation}`, 16, 67)
+    // Divide o texto em linhas que cabem na largura da página
+    const splitText = doc.splitTextToSize(order.orderObservation, maxWidth);
+
+    // Imprime o texto quebrado corretamente
+    doc.text(splitText, startX, startY);
 
     //Corpo...
     doc.setFontSize(9)

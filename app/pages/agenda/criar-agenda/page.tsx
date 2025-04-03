@@ -112,8 +112,8 @@ export default function CreateAgenda() {
     return(
         <div className="flex justify-center items-end w-full">
            <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-wrap w-[98%] h-[85%]">
-                    <div className="flex justify-between items-center w-full h-[5%] p-2 mb-2">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-wrap gap-2 w-[98%]">
+                    <div className="flex justify-between items-center w-full h-[5%]">
                         <FormField
                             control={form.control}
                             name="taskId"
@@ -121,7 +121,7 @@ export default function CreateAgenda() {
                                 <FormItem>
                                     <FormLabel>Cod. Agenda</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Código da agenda" className="cod-cliente w-80 shadow-sm shadow-zinc-200" {...field} />
+                                        <Input placeholder="Código da agenda" className="cod-cliente w-80 2xl:w-[450px] shadow-sm shadow-zinc-200" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -134,7 +134,7 @@ export default function CreateAgenda() {
                                 <FormItem>
                                     <FormLabel>Cod. Usuário</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Código do usuário" className="cod-cliente w-80 shadow-sm shadow-zinc-200" {...field} />
+                                        <Input placeholder="Código do usuário" className="cod-cliente w-80 2xl:w-[450px] shadow-sm shadow-zinc-200" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -147,15 +147,14 @@ export default function CreateAgenda() {
                                 <FormItem>
                                     <FormLabel>Nome usuário</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Nome do usuário" className="cod-cliente w-80 shadow-sm shadow-zinc-200" {...field} />
+                                        <Input placeholder="Nome do usuário" className="cod-cliente w-80 2xl:w-[450px] shadow-sm shadow-zinc-200" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
                     </div>
-                    <hr />            
-                    <div className="flex justify-between items-center flex-wrap w-full h-[10%] p-2">
+                    <div className="flex justify-between items-center flex-wrap w-full h-[5%]">
                         <FormField
                             control={form.control}
                             name="taskRegisterDate"
@@ -163,7 +162,7 @@ export default function CreateAgenda() {
                                 <FormItem>
                                     <FormLabel>Data do cadastro</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Data do cadastro" className="cod-cliente w-80 shadow-sm shadow-zinc-200" {...field} />
+                                        <Input placeholder="Data do cadastro" className="cod-cliente w-80 2xl:w-[450px] shadow-sm shadow-zinc-200" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -176,7 +175,7 @@ export default function CreateAgenda() {
                                 <FormItem>
                                     <FormLabel>Data do agendamanto</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Data do agendamanto" className="data-agendamento w-80 shadow-sm shadow-zinc-200" {...field} />
+                                        <Input placeholder="Data do agendamanto" className="data-agendamento w-80 2xl:w-[450px] shadow-sm shadow-zinc-200" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -189,7 +188,7 @@ export default function CreateAgenda() {
                                 <FormItem>
                                     <FormLabel>Horário do agendamanto</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Horário do agendamanto" className="cod-cliente w-80 shadow-sm shadow-zinc-200" {...field} />
+                                        <Input placeholder="Horário do agendamanto" className="cod-cliente w-80 2xl:w-[450px] shadow-sm shadow-zinc-200" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -202,14 +201,14 @@ export default function CreateAgenda() {
                                 <FormItem>
                                     <FormLabel>Assunto</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Assunto" className="cod-cliente w-80" {...field} />
+                                        <Input placeholder="Assunto" className="cod-cliente w-80 2xl:w-[450px]" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
                     </div>        
-                    <div className="w-full pr-2">
+                    <div className="w-full h-[5%]">
                         <FormField
                             control={form.control}
                             name="taskAgendaStatus"
@@ -227,7 +226,7 @@ export default function CreateAgenda() {
                             )}
                         />
                     </div>
-                    <div className="flex justify-center items-center w-full h-[20%] p-2">
+                    <div className="flex justify-center items-center w-full mb-2">
                         <FormField
                             control={form.control}
                             name="taskDescription"
@@ -235,14 +234,14 @@ export default function CreateAgenda() {
                                 <FormItem className="w-full">
                                     <FormLabel>Descrição</FormLabel>
                                     <FormControl>
-                                        <Textarea  placeholder="Digite seu texto..." className="description w-full h-32 shadow-sm shadow-zinc-300" {...field} />
+                                        <Textarea  placeholder="Digite seu texto..." className="description w-full h-32 2xl:h-48 shadow-sm shadow-zinc-300" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
                     </div>
-                    <div className="box-buttom flex flex-col gap-3 w-full p-2" >
+                    <div className="box-buttom flex flex-col gap-3 w-full mb-6" >
                         <Button type="submit" className="w-full h-10 bg-zinc-900 hover:bg-zinc-950 text-slate-200 text-lg shadow-sm shadow-zinc-500">Criar agenda</Button>
                         <Button type="button" className="w-full h-10 bg-zinc-900 hover:bg-zinc-950 text-slate-200 text-lg shadow-sm shadow-zinc-500" onClick={() => router.push('/pages/agenda')}>Cancelar</Button>
                     </div>

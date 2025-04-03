@@ -7,7 +7,7 @@ import { useLoginContext } from "@/app/context/loginContext/LoginContext"
 import { usePedidoContext } from "@/app/context/pedidoContext/PedidoContext"
 import { useProductContext } from "@/app/context/productContext/AllProductGlrContext"
 
-import ItemList from "@/app/utils/item-list"
+import { ItemList } from "@/app/utils/item-list"
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -220,9 +220,9 @@ export default function OrderDetail() {
     }
 
     return (
-        <div className="relative flex flex-col justify-end w-full h-[95%]">
+        <div className="relative flex flex-col justify-end w-full h-[95%] pt-4">
             <div className="box-info-client flex justify-center items-center w-full h-[10%]">
-                <div className="flex justify-between items-end w-full h-[85%] p-2">
+                <div className="flex justify-between items-end w-full h-[85%] pl-5 pr-5 2xl:pr-7 2xl:pl-7 pb-4">
                     <div className="flex gap-5 w-full">
                         <div className="flex flex-col gap-1 w-[12%] h-10">
                             <span className="text-xs">Cod. Pedido</span>
@@ -257,7 +257,7 @@ export default function OrderDetail() {
             <div className="box-btn-add-item flex justify-center items-center w-full h-[40%] max-h-[38%] bg-gray-50 rounded-lg">
                 <div className="flex flex-wrap justify-center w-[98%] h-[85%]">
                     <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-wrap gap-x-10 w-[98%] h-[95%]">
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-wrap justify-between gap-x-4 2x1:gap-x-4 w-[98%] h-[95%]">
                             <FormField
                                 control={form.control}
                                 name="productCod"
@@ -265,7 +265,7 @@ export default function OrderDetail() {
                                     <FormItem>
                                         <FormLabel>Cod. Produto</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Código do produto" className="cod-produto w-80" {...field} onBlur={(value) => getProduct(value.target.value)} />
+                                            <Input placeholder="Código do produto" className="cod-produto w-[336px] 2xl:w-[450px]" {...field} onBlur={(value) => getProduct(value.target.value)} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -278,7 +278,7 @@ export default function OrderDetail() {
                                     <FormItem>
                                         <FormLabel>Descrição Produto</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Descrição produto" className="cod-cliente w-80" {...field} />
+                                            <Input placeholder="Descrição produto" className="cod-cliente w-[336px] 2xl:w-[450px]" {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -291,7 +291,7 @@ export default function OrderDetail() {
                                     <FormItem>
                                         <FormLabel>Valor Un.</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Valor unitário" className="cod-cliente w-80" {...field} />
+                                            <Input placeholder="Valor unitário" className="cod-cliente w-[336px] 2xl:w-[450px]" {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -304,7 +304,7 @@ export default function OrderDetail() {
                                     <FormItem>
                                         <FormLabel>Quantidade</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Quantidade" className="cod-cliente w-80" {...field} />
+                                            <Input placeholder="Quantidade" className="cod-cliente w-[336px] 2xl:w-[450px]" {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -317,7 +317,7 @@ export default function OrderDetail() {
                                     <FormItem>
                                         <FormLabel>IPI</FormLabel>
                                         <FormControl>
-                                        <Input placeholder="IPI" className="cod-cliente w-80" {...field} />
+                                            <Input placeholder="IPI" className="cod-cliente w-[336px] 2xl:w-[450px]" {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -330,13 +330,13 @@ export default function OrderDetail() {
                                     <FormItem>
                                         <FormLabel>ST</FormLabel>
                                         <FormControl>
-                                        <Input placeholder="ST" className="cod-cliente w-80" {...field} />
+                                            <Input placeholder="ST" className="cod-cliente w-[336px] 2xl:w-[450px]" {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
-                            <div className="flex justify-between gap-2 w-full h-14 pr-8">
+                            <div className="flex justify-between gap-2 w-full h-14">
                                 <Button type="submit" className="bg-zinc-900 hover:bg-zinc-950 mt-3 rounded-lg">Adicionar Item</Button>
                                 <div className="flex gap-2">
                                     <Button type="button" onClick={finishOrder} className="bg-zinc-900 hover:bg-zinc-950 mt-3 rounded-lg">Finalizar Pedido</Button>
@@ -348,16 +348,16 @@ export default function OrderDetail() {
                 </div>                        
             </div>   
             <hr/>             
-            <div className="box-detail-order flex justify-center items-center w-full h-[56%] p-1 bg-gray-50">
+            <div className="box-detail-order flex justify-center items-center w-full h-[56%] 2xl:h-[76%] p-1 bg-gray-50">
                 <div className="flex flex-col justify-center items-center w-[99%] h-[100%] rounded-lg bg-slate-100">
-                    <div className="flex flex-col justify-between w-full h-[9%] rounded-sm bg-slate-950">
-                        <ul className="flex justify-between w-full h-[100%] pl-2 pr-2 text-white">
-                            <div className="grid grid-cols-[50px_150px_430px] w-full">
+                    <div className="flex flex-col justify-between w-full h-[9%] 2xl:h-[6%] rounded-sm bg-slate-950">
+                        <ul className="flex justify-between items-center w-full h-[100%] pl-2 pr-2 text-white">
+                            <div className="grid grid-cols-[50px_150px_430px] 2xl:grid-cols-[50px_150px_700px] w-full">
                                 <li className="col-start-1 col-span-1">Item</li>
                                 <li className="col-start-2 col-span-1">Cod. Item</li>
                                 <li className="col-start-3 col-span-1">Descrição</li>
                             </div>
-                            <div className="grid grid-cols-[100px_50px_70px_70px_80px] w-full">
+                            <div className="grid grid-cols-[100px_50px_70px_70px_80px]  w-full">
                                 <li className="col-start-1 col-span-1">Valor Uni.</li>
                                 <li className="col-start-2 col-span-1">Qt.</li>
                                 <li className="col-start-3 col-span-1">IPI</li>
@@ -376,7 +376,7 @@ export default function OrderDetail() {
                                      const  fullValueUnity = productFullValue.toFixed(2)
                                     return (
                                         <div key={key} className="relative flex flex-col justify-between items-center mb-[2px] w-full h-7 rounded-sm hover:bg-slate-300 bg-slate-200">
-                                            <ul className="grid grid-cols-[50px_150px_430px_100px_45px_70px_70px_80px] place-content-start w-full pl-3">
+                                            <ul className="grid grid-cols-[50px_150px_430px_100px_45px_70px_70px_80px] 2xl:grid-cols-[50px_150px_700px_100px_45px_70px_70px_80px]  place-content-start w-full pl-3">
                                                 <li >{key + 1}</li>
                                                 <li>{productCod}</li>
                                                 <li>{productDescription}</li>

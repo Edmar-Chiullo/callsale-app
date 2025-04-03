@@ -89,46 +89,44 @@ export default function Login() {
 
   return (
       <div className="flex flex-col items-center justify-center w-full h-[100vh] space-y-20">
-          <h1 className="lg:text-7xl md:text-5x1 sm:text-4xl">Login</h1>
+          <h1 className="xl:text-8xl lg:text-8xl md:text-6x1 sm:text-5xl">Login</h1>
           <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 lg:w-[40%] md:w-[50%] smLight:w-[90%]">
-              <FormField
-                  control={form.control}
-                  name="login"
-                  render={({ field }) => (
-                  <FormItem>
-                      <FormLabel className="text-lg">Usuário</FormLabel>
-                      <FormControl>
-                      <Input placeholder="Usuário" className="login h-12" {...field} />
-                      </FormControl>
-                      <FormDescription>
-                      </FormDescription>
-                      <FormMessage />
-                  </FormItem>
-                  )}
-              />
-              <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                  <FormItem>
-                      <FormLabel className="text-lg">Senha</FormLabel>
-                      <FormControl>
-                      <Input type='password' placeholder="Senha" className="password h-12" {...field} />
-                      </FormControl>
-                      <FormDescription></FormDescription>
-                      <FormMessage />
-                  </FormItem>
-                  )}
-              />
-              <Button type="submit" className="w-full h-12 text-2xl">Entrar</Button>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 xl:w-[40%] lg:w-[50%] md:w-[70%] sm:w-[80%]">
+                <FormField
+                    control={form.control}
+                    name="login"
+                    render={({ field }) => (
+                    <FormItem>
+                        <FormLabel className="text-lg">Usuário</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Usuário" className="login h-12 " {...field} />
+                        </FormControl>
+                        <FormDescription>
+                        </FormDescription>
+                        <FormMessage />
+                    </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                    <FormItem>
+                        <FormLabel className="text-lg">Senha</FormLabel>
+                        <FormControl>
+                        <Input type='password' placeholder="Senha" className="password h-12" {...field} />
+                        </FormControl>
+                        <FormDescription></FormDescription>
+                        <FormMessage />
+                    </FormItem>
+                    )}
+                />
+                <Button type="submit" className="w-full h-12 text-2xl">Entrar</Button>
               </form>
               { alertMessage &&
               <Alert className='w-96'>
-                  <AlertTitle className='text-[red]'>Erro!</AlertTitle>
-                  <AlertDescription className='text-[red]'>
-                  Usuário ou senha não correspondem.
-                  </AlertDescription>
+                <AlertTitle className='text-[red]'>Erro!</AlertTitle>
+                <AlertDescription className='text-[red]'>Usuário ou senha não correspondem.</AlertDescription>
               </Alert>
               }
           </Form>

@@ -202,7 +202,7 @@ export default function Pedido() {
   }
 
   return (
-    <div className="relative flex flex-col gap-3 justify-end items-center w-full h-full p-4">  
+    <div className="relative flex flex-col gap-2 justify-end items-center w-full h-full p-4">  
       <div className="box-btn-add-item flex justify-center items-center w-full h-[10%] pr-2">
         <div className="flex flex-col gap-2">
           <label htmlFor="rp">Representada</label>

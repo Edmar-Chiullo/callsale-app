@@ -91,7 +91,7 @@ export default function Home() {
         <Button className="w-28 h-10 bg-zinc-900 hover:bg-zinc-950 text-slate-50 shadow-sm shadow-zinc-700" onClick={createTask}>Criar agenda</Button>
       </div>                
       <div className="box-detail-order flex flex-col justify-center items-center w-full h-[70%]">
-        <h2 className="self-start mb-4">Agendas do dia</h2>
+        <h2 className="self-start mb-1">Agendas do dia</h2>
         <hr className="w-full"/>
         <div className="flex flex-col w-full h-[95%]">
           <div className="w-full h-6 bg-zinc-950 rounded-sm pl-1 mb-1">

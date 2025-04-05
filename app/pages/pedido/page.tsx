@@ -92,9 +92,6 @@ export default function Pedido() {
     return () => unsubscribe();
   }, []);
  
-  useEffect(() => {
-
-  }, [observation])
 
   function getElmentValueId(index:any) {
     const li = index.target.parentElement
@@ -109,6 +106,7 @@ export default function Pedido() {
   }
   
   function alterState(index:any) {
+    console.log(index)
     setCardConfirm(true)
 
     const value = getElmentValueId(index)
@@ -119,11 +117,11 @@ export default function Pedido() {
 
   function getStatusOrder(status: boolean | string) {
     switch (status) {
-      case true:
+      case 'Aberto':
         const pendingOrder = 'pendente'
         return pendingOrder
 
-      case false:
+      case 'Fechado':
         const finishOrder = 'finalizado'
         return finishOrder  
               
@@ -160,17 +158,20 @@ export default function Pedido() {
     const val = value.target.innerText
     switch (val) {
       case 'Confirmar':
-        orders?.setState(false)
+        orders?.setState('Fechado')
+        orders?.setConfirmDate(fullDate())
         break;
     
       case 'Cancelar':
-        orders?.setState(true)
+        orders?.setState('Cancelado')
+        orders?.setConfirmDate(fullDate())
         break;
 
       default:
         break;
     }
     closedCard()
+    console.log(orders)
     pushAlterOrder(orders)
   }
 
@@ -247,7 +248,7 @@ export default function Pedido() {
             <ScrollArea className="relative flex flex-col justify-center items-center w-full h-[100%]">
               {cardConfirm && <div className="absolute z-10 top-2 left-[30%] flex justify-center items-center w-96 h-[200px] p-2 rounded-lg  bg-zinc-950 shadow-zinc-400 shadow-xl">
                   <Image 
-                    src={'/Cancelar.png'}
+                    src={'/cancelar.png'}
                     width={20}
                     height={20}
                     alt="close" 
@@ -265,9 +266,10 @@ export default function Pedido() {
                     const { orderCliCOD, orderDate, orderFantasia, orderHour, orderId, orderStatus, orderValue}:any = order          
                     const state = getStatusOrder(orderStatus)
                     const formattedDate = orderDate.slice(0, 2) + "/" + orderDate.slice(2, 4);
-
-                   if (orderStatus) return ( 
-                      <div key={i} className="flex justify-center items-center mb-1 w-full h-8 rounded-sm bg-slate-50 hover:bg-slate-100">
+                    const lineColor = (orderStatus === 'Fechado' && orderStatus !== 'Cancelado') ? 'bg-green-100' : 'bg-orange-100'
+                    const hoverColor = (orderStatus === 'Fechado' && orderStatus !== 'Cancelado') ? 'hover:bg-green-200' : 'hover:bg-orange-200'
+                   if (orderStatus === 'Aberto' || orderStatus === 'Fechado') return ( 
+                      <div key={i} className={`flex justify-center items-center mb-1 w-full h-8 rounded-sm ${lineColor} ${hoverColor}`}>
                         <ul className="grid grid-cols-10 items-center w-full h-full text-sm pl-2 pr-1">
                           <li className="col-start-1">{orderId}</li>
                           <li className="col-start-2">{orderCliCOD}</li>

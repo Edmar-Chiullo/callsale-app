@@ -22,6 +22,7 @@ import { ItemOrder } from "@/app/class/classes"
 import { pushOrder, pushOrderItens } from "@/app/controler-firebase/realtime-database"
 import { convertListToArray } from "@/app/utils/convert-list-to-arrar"
 import { useRepresentedContext } from "@/app/context/repreContext/RepreContext"
+import { fullDate } from "@/app/utils/create-date"
 
 
 const formSchema = z.object({
@@ -195,9 +196,11 @@ export default function OrderDetail() {
     }
 
     function finishedOrder(value:any) { 
-        if (value.target.innerHTML === 'Aberto') {
+        const status = value.target.innerHTML
+        if ( status === 'Aberto' || status === 'Fechado') {
             order?.setValue(resultOrderValue)
-            order?.updateStatus(true)
+            order?.updateStatus(status)
+            order?.setConfirmDate(fullDate())
             const lista = convertListToArray(itemInterface)
 
             pushOrder(order)
@@ -207,16 +210,13 @@ export default function OrderDetail() {
             
             setCount(0)
 
-            setStateOfOrder(true)
+            setStateOfOrder(status)
             
             clearInputs()
 
             router.push('/pages/pedido')
 
-        } else {
-            setStateOfOrder(false)
-        }
-        setAlertConfirme(false)
+        } 
     }
 
     return (

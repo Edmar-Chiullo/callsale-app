@@ -35,7 +35,7 @@ export default function FormObservation({alterState}: {alterState: (value: boole
     return (
         <div className="absolute flex flex-col justify-center items-center self-center w-[900px] h-72 bg-slate-100 border shadow-lg shadow-zinc-700 rounded-md p-2">
             <Image  
-                src={'/cancelar.png'}
+                src={'/cancelarObs.png'}
                 width={30}                              
                 height={30}
                 alt="btn-fechar"

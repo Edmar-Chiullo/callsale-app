@@ -50,7 +50,7 @@ export interface OrderProps {
     orderDate: string | null
     orderHour: string | null
     orderValue: number | null
-    orderStatus: boolean | null // Tipos de status. Concluido | Cancelada | Pendente.
+    orderStatus: boolean | null | string // Tipos de status. Concluido | Cancelada | Pendente.
 }
 
 export interface TaskProps {

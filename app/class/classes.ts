@@ -80,14 +80,15 @@ export class Order implements OrderProps {
     orderValue: number | null
     orderFantasia: string | null
     orderDate: string | null
+    orderConfirmDate: string | null
     orderHour: string | null
-    orderStatus: boolean | null
+    orderStatus: boolean | null | string
     orderObservation: string | null
 
     constructor(
         employee: EmployeeProps,
         client: ClientProps,
-        status: boolean
+        status: boolean | null | string
     ) {
         this.orderId = `${client.clientAlias?.slice(0,2)}${String(client.clientCode)?.slice(0,2).toString().split('-', 2)}-${fullHour()}`
         this.orderEmployeeId = employee.employeeId
@@ -96,14 +97,20 @@ export class Order implements OrderProps {
         this.orderValue = 0
         this.orderFantasia = client.clientAlias
         this.orderDate = fullDate()
+        this.orderConfirmDate = null
         this.orderHour = fullHour()
         this.orderStatus = status
         this.orderObservation = ''
     }
 
-    updateStatus(newStatus: boolean): void {
+    updateStatus(newStatus: boolean | string): void {
         this.orderStatus = newStatus;
     }
+
+    setConfirmDate(value: string): void {
+        this.orderConfirmDate = value
+    }
+
 
     setValue(value: number): void {
         this.orderValue = value

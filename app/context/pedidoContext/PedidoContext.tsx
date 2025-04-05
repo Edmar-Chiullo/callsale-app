@@ -13,7 +13,7 @@ interface PedidoContextProps {
   setClient: (client:ClientProps | null) => void;
   setOrder: (order:Order | null) => void;
   setEmployee: (employee:EmployeeProps | null) => void;
-  setStateOfOrder: (state:boolean | null) => void
+  setStateOfOrder: (state:boolean | null | string) => void
 }
 
 export const PedidoContext = createContext<PedidoContextProps | null>(null);

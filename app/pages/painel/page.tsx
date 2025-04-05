@@ -44,7 +44,6 @@ export default function Home() {
     const order = onValue(data, (snapshot) => {
       if (snapshot.exists()) {
         const pedidos:any = Object.values(snapshot.val())
-
         const orderList = stractOrderList(pedidos)
         if (pedidos) setOrder(orderList)
       } else {
@@ -78,14 +77,14 @@ export default function Home() {
     const dia = dataStr.slice(0, 2);
     const mes = dataStr.slice(2, 4);
     const ano = dataStr.slice(4, 8);
-    const alt = Number(dia) + 1
+    const alt = Number(dia)
     return new Date(`${ano}-${mes}-${String(alt)}`); // Formato YYYY-MM-DD
   }
 
   function calcMonth() {
     const month:any = []
     const result:any = order.map(({orderValue, orderStatus}:any) => {
-      if (!orderStatus) {
+      if (orderStatus === 'Fechado') {
         month.push(orderValue)
         return orderValue
       } 
@@ -100,14 +99,18 @@ export default function Home() {
   function calWeek() {
     const hoje = new Date();
     const primeiroDiaSemana = new Date(hoje);
-    primeiroDiaSemana.setDate(hoje.getDate() - hoje.getDay())
+    const date = hoje.getDay()
+    primeiroDiaSemana.setDate(hoje.getDate() - date)
+    
+    
     const week:any = []
-    const result = order.map(({orderValue, orderDate, orderStatus}:any) => {
-
-      const dataPedido = new Date(formatarData(orderDate));
-      if (dataPedido.getDate() >= primeiroDiaSemana.getDate() && dataPedido.getDate() <= hoje.getDate() && !orderStatus) { 
-        week.push(orderValue)
-        return orderValue 
+    const result = order.map(({orderValue, orderConfirmDate = null, orderStatus}:any) => {
+      if (orderConfirmDate) {
+        const dataPedido = new Date(formatarData(orderConfirmDate));
+        if (dataPedido.getDay() >= primeiroDiaSemana.getDay() && dataPedido.getDate() <= hoje.getDate() && orderStatus === 'Fechado') { 
+          week.push(orderValue)
+          return orderValue 
+        }
       }
 
     }).reduce((sum=0, value=0) => sum + value, 0)
@@ -120,11 +123,13 @@ export default function Home() {
   function calcDay() {
     const date = fullDate()
     const day:any = []
-    const result:any = order.map(({orderValue, orderDate, orderStatus}:any) => {
-      if (orderDate.slice(0,2) === date.slice(0,2) && !orderStatus){
-        day.push(orderValue)
-        return orderValue
-      } 
+    const result:any = order.map(({orderValue, orderDate, orderConfirmDate = null, orderStatus}:any) => {
+      if (orderConfirmDate) {
+        if (orderConfirmDate.slice(0,2) === date.slice(0,2) && orderStatus === 'Fechado'){
+          day.push(orderValue)
+          return orderValue
+        } 
+      }
     }).reduce((sum=0, value=0) => sum + value, 0)
 
     setFullOrderDay(day)
@@ -231,7 +236,7 @@ export default function Home() {
                                 orderStatus, 
                                 orderValue
                               }:any, i) => { order
-                      if (orderStatus === true) return <div key={i} ><ul className="grid grid-cols-10 text-[16px] hover:bg-slate-100 hover:cursor-pointer pl-2 pr-2">
+                      if (orderStatus === 'Aberto') return <div key={i} ><ul className="grid grid-cols-10 text-[16px] hover:bg-slate-100 hover:cursor-pointer pl-2 pr-2">
                                                                         <li className="col-start-1 col-span-2">{orderId}</li>
                                                                         <li className="col-start-4 col-span-4 overflow-x-hidden">{orderFantasia}</li>
                                                                         <li className="col-start-8 col-span-2">{`R$ ${Number(orderValue).toFixed(2)}`}</li>

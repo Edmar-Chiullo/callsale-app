@@ -9,7 +9,8 @@ export class AlterOrder {
     orderFantasia: string | null
     orderHour: string | null
     orderValue: number | null
-    orderStatus: boolean | null
+    orderStatus: boolean | null | string
+    orderConfirmDate: string | null
     orderObservation: string | null
 
 
@@ -23,15 +24,20 @@ export class AlterOrder {
         this.orderHour = order.orderHour
         this.orderValue = order.orderValue
         this.orderStatus = order.orderStatus
+        this.orderConfirmDate = null
         this.orderObservation = null
 
     }
 
-    setState(status: boolean): void {
+    setState(status: boolean | string): void {
         this.orderStatus = status
     }
 
     setObservation(value:string): void {
         this.orderObservation = value
     } 
+
+    setConfirmDate(value: string): void {
+        this.orderConfirmDate = value
+    }
 }

@@ -9,7 +9,7 @@ interface PedidoContextProps {
   client: ClientProps | null
   order: Order | null
   employee: EmployeeProps | null
-  stateOfOrder: boolean | null
+  stateOfOrder: boolean | null | string
   setClient: (client:ClientProps | null) => void;
   setOrder: (order:Order | null) => void;
   setEmployee: (employee:EmployeeProps | null) => void;

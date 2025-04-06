@@ -103,7 +103,7 @@ export class Order implements OrderProps {
         this.orderObservation = ''
     }
 
-    updateStatus(newStatus: boolean | string): void {
+    updateStatus(newStatus: boolean | null | string): void {
         this.orderStatus = newStatus;
     }
 
